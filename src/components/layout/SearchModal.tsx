@@ -51,7 +51,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-start justify-center pt-20 px-4">
+        <div className="fixed inset-0 z-[999] flex items-start justify-center pt-20 px-4">
           {/* Dark Overlay */}
           <motion.div
             initial={{ opacity: 0 }}

@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -43,6 +45,19 @@ body {
   overflow-y: scroll;
 }
 
+/* View Transitions for Theme Toggle */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 2147483646;
+}
+
 /* Scrollbar Hide Utility */
 .scrollbar-hide {
   -ms-overflow-style: none; /* IE and Edge */
@@ -66,19 +81,22 @@ body {
 
 /* Background grid utility */
 .hero-bg-grid {
-  position: fixed;
-  inset: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90vh; /* Adjust height so it covers up to around the CTA button */
   background-image: linear-gradient(var(--hero-grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--hero-grid-color) 1px, transparent 1px);
   background-size: 48px 48px;
-  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 40%, transparent 100%);
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 40%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
   opacity: 0.8;
   z-index: -1;
   pointer-events: none;
 }
 
 .hero-bg-glow {
-  position: fixed;
+  position: absolute;
   background: radial-gradient(ellipse, var(--hero-glow-color) 0%, transparent 70%);
   height: 400px;
   width: 600px;

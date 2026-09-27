@@ -3,75 +3,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { LinkedInModal } from "../layout/LinkedInModal";
-
-const linkedinPosts = [
-  {
-    id: "1",
-    date: "1 bln",
-    text: `Beberapa bulan terakhir saya cukup banyak menghabiskan waktu ngulik backend untuk sebuah MVP project bernama Jepretin, platform marketplace jasa fotografi & videografi berbasis lokasi.
-
-Di project ini saya berperan sebagai Backend Developer dalam tim berisi 4 orang. Fokus utama saya ada di API architecture, order workflow, payment integration, wallet system, sampai deployment menggunakan Railway + Docker.
-
-Awalnya saya pikir backend itu mostly tentang CRUD API. Tapi setelah project mulai berkembang, ternyata challenge sebenarnya justru ada di business flow dan edge case.
-
-Contohnya di order workflow.
-
-Provider tidak bisa langsung mengubah order menjadi COMPLETED tanpa konfirmasi customer terlebih dahulu. Kelihatannya sederhana, tapi flow seperti ini cukup penting untuk customer protection dan mencegah premature order completion.
-
-Selain itu, saya juga banyak belajar saat handling:
-- Midtrans payment webhook
-- wallet transaction flow
-- modular API structure
-- Prisma & PostgreSQL deployment
-- Swagger API documentation
-- Docker environment setup
-
-Tech stack yang digunakan:
-Node.js, Express.js, PostgreSQL, Prisma ORM, Midtrans, Railway, dan Docker.
-
-Saat ini backend MVP sudah berhasil dideploy dan memiliki:
-- Authentication & Role Management
-- Provider Onboarding
-- Booking & Order Workflow
-- Payment Integration
-- Wallet & Withdrawal System
-- Review & Notification System
-- OpenAPI Documentation
-
-Project ini masih jauh dari sempurna, tapi dari sini saya mulai paham kalau backend development bukan cuma soal endpoint berjalan, tapi juga tentang bagaimana sebuah system bisa tetap reliable ketika business flow mulai kompleks.
-
-Big thanks untuk seluruh tim yang sudah berkolaborasi di project ini ( Mochamad Abdul Azis, Aditya Arya Respati, AZRA'I MAHENDRA )
-
-Swagger Docs:
-https://lnkd.in/dZZQDN4Y
-GitHub Repository:
-https://lnkd.in/ddfJEqxh`,
-    images: ["/1.1.jfif", "/1.2.jfif", "/1.3.jfif", "/1.4.jfif", "/1.5.jfif", "/1.6.jfif"]
-  },
-  {
-    id: "2",
-    date: "2 bln",
-    text: `Pada 18 Juni 2025, saya berkesempatan mengikuti Pekan Inovasi kampus untuk menampilkan project aplikasi cuaca yang kami kembangkan di mata kuliah Pemrograman Mobile.
-Di project ini saya dipercaya sebagai Project Manager sekaligus ikut membantu di sisi backend. Saya membagi tim ke dalam beberapa divisi dengan tech lead (Backend, Frontend, UI/UX) dan mengatur workflow menggunakan ClickUp dan berkolaborasi dengan GitHub agar proses kerja lebih terstruktur.
-Melalui pengalaman ini, saya banyak belajar tentang koordinasi tim, komunikasi, dan bagaimana mempresentasikan hasil kerja di depan juri maupun pengunjung.
-Terima kasih untuk seluruh tim yang sudah berkontribusi dan bekerja sama hingga project ini bisa kami tampilkan dengan baik. 
-Mochamad Abdul Azis
-Aditya Arya Respati
-Rizal Syihab`,
-    images: ["/2.1.jfif", "/2.2.jfif", "/2.3.jfif", "/2.4.jfif"]
-  },
-  {
-    id: "3",
-    date: "6 bln",
-    text: `Halo semuanya! Saya Kevin Risky Abadi dari Universitas Nusantara PGRI Kediri, jurusan Sistem Informasi. Siap memulai petualangan baru di dunia Back-End Development bersama Binar Academy dalam program MSIB Kampus Merdeka Batch 7! 🚀
-
-Saya tahu tentang Binar Academy lewat platform Kampus Merdeka, dan langsung tertarik buat ikut belajar di sini. Nggak sabar buat memperdalam ilmu dan pengalaman di bidang ini! 😄💻
-
-Spesial terima kasih untuk Binar Academy dan Kampus Merdeka atas kesempatan luar biasa ini 🙏🙌 
-#part_of_bejs_class_binar #MSIBBatch7 #BinarAcademy #BackEndJourney`,
-    images: ["/3.1.jfif"]
-  },
-];
+import { linkedinPostsData } from "@/data/linkedin";
 
 const LinkedinLogoFull = () => (
   <div className="flex items-center text-[#0a66c2] font-bold text-xl tracking-tighter">
@@ -92,14 +24,14 @@ export function LinkedIn() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {linkedinPosts.map((post, idx) => (
+        {linkedinPostsData.map((post, idx) => (
           <motion.div
             key={post.id}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.5, delay: idx * 0.1 }}
-            className="group relative bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-xl p-4 flex flex-col h-[220px] overflow-hidden"
+            className="group relative bg-[#f3f4f6] dark:bg-zinc-900 border border-transparent dark:border-zinc-800 rounded-xl p-4 flex flex-col h-[220px] overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-start justify-between mb-3">
@@ -147,7 +79,7 @@ export function LinkedIn() {
         isOpen={!!selectedPost} 
         onClose={() => setSelectedPost(null)} 
         postId={selectedPost} 
-        postContent={linkedinPosts.find(p => p.id === selectedPost)}
+        postContent={linkedinPostsData.find(p => p.id === selectedPost)}
       />
     </section>
   );

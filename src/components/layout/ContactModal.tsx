@@ -25,7 +25,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+      <div className="fixed inset-0 z-[999] flex items-center justify-center p-4">
         {/* Dark Overlay */}
         <motion.div
           initial={{ opacity: 0 }}

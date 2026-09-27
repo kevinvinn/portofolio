@@ -1,55 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { MapPin, Calendar, Clock, ChevronDown, ChevronUp } from "lucide-react";
+import { MapPin, Calendar, Clock, ChevronDown, ChevronUp, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-
-const experiences = [
-  {
-    id: "manggala",
-    company: "PT Manggala Teknologi Nusantara",
-    role: "Backend Development Intern / Peserta PKL",
-    location: "Kediri, Jawa Timur",
-    period: "Juli 2025 — September 2025",
-    duration: "3 months",
-    isCurrent: false,
-    highlights: [
-      "Mengembangkan backend JEPRETIN menggunakan Node.js, Express.js, PostgreSQL, dan Prisma.",
-      "Mengembangkan REST API, database, authentication, authorization, dan validasi.",
-      "Mengintegrasikan Midtrans, membuat API documentation, testing dengan Jest, dan deployment Railway.",
-      "Berkolaborasi dalam tim 4 orang menggunakan GitHub, branching, pull request, dan merge.",
-    ],
-  },
-  {
-    id: "sky-ticket",
-    company: "Binar Academy",
-    role: "Back End JavaScript - With AI Literacy & Global Certification Class — MSIB Studi Independen",
-    location: "Remote",
-    period: "September 2024 — Desember 2024",
-    duration: "4 months",
-    isCurrent: false,
-    highlights: [
-      "Mengembangkan backend Sky Ticket, website pemesanan tiket pesawat bersama tim 8 orang.",
-      "Mendesain database dan relasi menggunakan PostgreSQL dan Prisma serta mengembangkan REST API.",
-      "Mengimplementasikan authentication menggunakan JWT, OTP email, Google OAuth, role-based access, dan refresh token.",
-      "Melakukan testing dengan Jest serta deployment ke AWS menggunakan CI/CD GitHub Actions.",
-    ],
-  },
-  {
-    id: "unpkediri",
-    company: "Universitas Nusantara PGRI Kediri",
-    role: "S1 Sistem Informasi",
-    location: "Kediri, Jawa Timur",
-    period: "2022 — 2026",
-    duration: "4 years",
-    isCurrent: false,
-    highlights: [
-      "Mempelajari pemrograman, analisis dan perancangan sistem, database, web development, proses bisnis, dan UI/UX.",
-      "Menyelesaikan skripsi mengenai evaluasi kinerja YOLOv8 Nano untuk deteksi multi-objek logistik pendaki.",
-      "Mengembangkan kemampuan analisis, problem solving, dan kerja tim melalui berbagai project selama perkuliahan.",
-    ],
-  },
-];
+import { experienceData } from "@/data/experience";
 
 export function WorkExperience() {
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({
@@ -79,9 +33,9 @@ export function WorkExperience() {
           <div className="absolute top-[12px] bottom-0 left-[7px] w-[2px] bg-[#00d0ff]" />
 
           <div className="flex flex-col gap-12">
-            {experiences.map((exp, idx) => {
+            {experienceData.map((exp, idx) => {
               const isOpen = openItems[exp.id];
-              const isLast = idx === experiences.length - 1;
+              const isLast = idx === experienceData.length - 1;
 
               return (
                 <div key={exp.id} className="relative pl-10 lg:pl-12">
@@ -164,16 +118,21 @@ export function WorkExperience() {
                         className="overflow-hidden"
                       >
                         <div className="pt-4 pb-2">
-                          <ul className="space-y-3 pl-4 border-l-[1.5px] border-border/60">
+                          <div className="flex flex-col gap-3">
                             {exp.highlights.map((highlight, hIdx) => (
-                              <li
+                              <div
                                 key={hIdx}
-                                className="relative text-sm text-muted-foreground leading-relaxed pl-1 before:content-[''] before:absolute before:-left-[21px] before:top-[8px] before:w-[5px] before:h-[5px] before:bg-muted-foreground/50 before:rounded-full"
+                                className="flex items-start gap-3 group"
                               >
-                                {highlight}
-                              </li>
+                                <div className="mt-[3px] flex-shrink-0 w-5 h-5 rounded-full bg-background border border-border flex items-center justify-center group-hover:bg-foreground group-hover:text-background group-hover:border-foreground transition-all duration-300 shadow-sm">
+                                  <ChevronRight className="w-3 h-3" />
+                                </div>
+                                <span className="text-sm text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors duration-300">
+                                  {highlight}
+                                </span>
+                              </div>
                             ))}
-                          </ul>
+                          </div>
                         </div>
                       </motion.div>
                     )}

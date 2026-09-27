@@ -15,7 +15,7 @@ export const projectsData: Project[] = [
     title: "JEPRETIN - A Location-Based Photography and Videography Marketplace Platform",
     category: "Web Development",
     date: "September 2025",
-    image: "/projects/project 1/Screenshot 2024-12-27 184243.png",
+    image: "/projects/project 2/1.1.jfif",
     tags: [
       "Node.js", "Express.js", "PostgreSQL", "Prisma", 
       "REST API", "JWT", "Midtrans", "Swagger", "Jest", "Backend Development"
@@ -30,15 +30,12 @@ Authentication and authorization were implemented using JWT, role-based access, 
 
 The application also includes comprehensive REST API documentation using Swagger and automated testing using Jest. The backend was deployed to Railway and developed collaboratively using GitHub with branching, pull requests, merging, and conflict resolution.`,
     gallery: [
-      "/projects/project 1/Screenshot 2024-12-27 184243.png",
-      "/projects/project 1/Screenshot 2024-12-27 211520.png",
-      "/projects/project 1/Screenshot 2024-12-27 211632.png",
-      "/projects/project 1/Screenshot 2024-12-27 215444.png",
-      "/projects/project 1/Screenshot 2024-12-27 215456.png",
-      "/projects/project 1/Screenshot 2024-12-27 220606.png",
-      "/projects/project 1/Screenshot 2024-12-27 221259.png",
-      "/projects/project 1/Screenshot 2024-12-27 221455.png",
-      "/projects/project 1/Screenshot 2024-12-27 221518.png"
+      "/projects/project 2/1.1.jfif",
+      "/projects/project 2/1.2.jfif",
+      "/projects/project 2/1.3.jfif",
+      "/projects/project 2/1.4.jfif",
+      "/projects/project 2/1.5.jfif",
+      "/projects/project 2/1.6.jfif"
     ]
   },
   {
@@ -46,7 +43,7 @@ The application also includes comprehensive REST API documentation using Swagger
     title: "Sky Ticket - A Web-Based Flight Ticket Booking Platform",
     category: "Web Development",
     date: "December 2024",
-    image: "/projects/project 2/1.1.jfif",
+    image: "/projects/project 1/Screenshot 2024-12-27 184243.png",
     tags: [
       "Node.js", "Express.js", "PostgreSQL", "Prisma", 
       "REST API", "JWT", "Google OAuth", "Redis", "AWS", "GitHub Actions", "Jest"
@@ -63,12 +60,15 @@ The backend provides REST APIs documented using Swagger and tested using Jest. T
 
 The project was developed collaboratively using Git and GitHub through branching, pull requests, merging, and conflict resolution, with ClickUp used for project progress tracking. The project was also presented to MSIB mentors and stakeholders.`,
     gallery: [
-      "/projects/project 2/1.1.jfif",
-      "/projects/project 2/1.2.jfif",
-      "/projects/project 2/1.3.jfif",
-      "/projects/project 2/1.4.jfif",
-      "/projects/project 2/1.5.jfif",
-      "/projects/project 2/1.6.jfif"
+      "/projects/project 1/Screenshot 2024-12-27 184243.png",
+      "/projects/project 1/Screenshot 2024-12-27 211520.png",
+      "/projects/project 1/Screenshot 2024-12-27 211632.png",
+      "/projects/project 1/Screenshot 2024-12-27 215444.png",
+      "/projects/project 1/Screenshot 2024-12-27 215456.png",
+      "/projects/project 1/Screenshot 2024-12-27 220606.png",
+      "/projects/project 1/Screenshot 2024-12-27 221259.png",
+      "/projects/project 1/Screenshot 2024-12-27 221455.png",
+      "/projects/project 1/Screenshot 2024-12-27 221518.png"
     ]
   },
   {

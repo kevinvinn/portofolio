@@ -10,6 +10,7 @@ const caveat = Caveat({ subsets: ["latin"], variable: "--font-signature" });
 
 import { Navbar } from "@/components/layout/Navbar";
 import { FloatingActions } from "@/components/layout/FloatingActions";
+import { ScrollRestorer } from "@/components/layout/ScrollRestorer";
 
 export const metadata: Metadata = {
   title: "Kevin R Portofolio",
@@ -28,6 +29,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${caveat.variable} font-sans antialiased bg-background text-foreground custom-scrollbar`} suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <ScrollRestorer />
           {/* Background Elements */}
           <div className="hero-bg-grid" />
           <div className="hero-bg-glow" />

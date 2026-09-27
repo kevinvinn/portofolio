@@ -26,17 +26,13 @@ export function Navbar() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <nav className="max-w-6xl mx-auto px-4 lg:py-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div className="flex-shrink-0">
               <Link href="/" className="flex items-center gap-2 group">
-                <img 
-                  src="/header.png" 
-                  alt="Kevin R Logo" 
-                  className="h-8 w-auto object-contain dark:invert transition-transform duration-300 group-hover:scale-105" 
-                />
+                <span className="font-signature text-3xl md:text-4xl font-bold tracking-tight text-foreground transition-transform duration-300 group-hover:scale-105">kevin.dev</span>
               </Link>
             </div>
 

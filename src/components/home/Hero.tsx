@@ -62,8 +62,7 @@ export function Hero() {
           >
             {/* Avatar Placeholder */}
             <div className="w-10 h-10 rounded-full bg-background flex items-center justify-center overflow-hidden border-2 border-foreground">
-              {/* If user provides image, we use <img src="..." /> here. For now: */}
-              <span className="text-foreground font-bold text-sm">KR</span>
+              <img src="/pp.jfif" alt="Kevin R" className="w-full h-full object-cover" />
             </div>
             <span className="font-semibold text-base">Get in touch</span>
           </button>

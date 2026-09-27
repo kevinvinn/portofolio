@@ -4,32 +4,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { BadgeCheck } from "lucide-react";
 import { CertificationModal } from "../layout/CertificationModal";
-
-const certifications = [
-  {
-    id: "1",
-    title:
-      "Back End JavaScript - With AI Literacy & Global Certification Class",
-    issuer: "Binar Academy",
-    validity: "2024",
-    image: "/docs/sertif 1.png",
-  },
-  {
-    id: "2",
-    title: "Red Hat System Administration I (RH124 - RHA) - Ver. 9.3",
-    issuer: "Red Hat",
-    validity: "2026",
-    // Ganti dengan file sertifikat Red Hat milik Kevin
-    image: "/docs/sertif 2.png",
-  },
-  {
-    id: "3",
-    title: "Magang PT Manggala Teknologi Nusantara",
-    issuer: "PT Manggala Teknologi Nusantara",
-    validity: "2025",
-    image: "/docs/sertif 3.png",
-  },
-];
+import { certificationsData } from "@/data/certifications";
 
 export function Certifications() {
   const [selectedCert, setSelectedCert] = useState<string | null>(null);
@@ -48,7 +23,7 @@ export function Certifications() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {certifications.map((cert, idx) => (
+        {certificationsData.map((cert, idx) => (
           <motion.div
             key={cert.id}
             initial={{ opacity: 0, y: 30 }}
@@ -102,7 +77,7 @@ export function Certifications() {
       <CertificationModal
         isOpen={!!selectedCert}
         onClose={() => setSelectedCert(null)}
-        cert={certifications.find((c) => c.id === selectedCert)}
+        cert={certificationsData.find((c) => c.id === selectedCert)}
       />
     </section>
   );

@@ -1,47 +1,57 @@
 export interface Experience {
   id: string;
-  role: string;
   company: string;
-  period: string;
+  role: string;
   location: string;
+  period: string;
+  duration: string;
+  isCurrent: boolean;
   highlights: string[];
 }
 
 export const experienceData: Experience[] = [
   {
-    id: "1",
-    role: "Senior Frontend Engineer",
-    company: "TechNova Solutions",
-    period: "2024 - Present",
-    location: "Jakarta, ID",
+    id: "manggala",
+    company: "PT Manggala Teknologi Nusantara",
+    role: "Backend Development Intern / Peserta PKL",
+    location: "Kediri, Jawa Timur",
+    period: "Juli 2025 — September 2025",
+    duration: "3 months",
+    isCurrent: false,
     highlights: [
-      "Led the migration of a legacy React app to Next.js App Router, improving LCP by 40%.",
-      "Architected a scalable component library using Tailwind CSS and Radix UI.",
-      "Mentored junior developers and established CI/CD best practices.",
+      "Mengembangkan backend JEPRETIN menggunakan Node.js, Express.js, PostgreSQL, dan Prisma.",
+      "Mengembangkan REST API, database, authentication, authorization, dan validasi.",
+      "Mengintegrasikan Midtrans, membuat API documentation, testing dengan Jest, dan deployment Railway.",
+      "Berkolaborasi dalam tim 4 orang menggunakan GitHub, branching, pull request, dan merge.",
     ],
   },
   {
-    id: "2",
-    role: "Fullstack Developer",
-    company: "Creative Studio",
-    period: "2022 - 2024",
-    location: "Bandung, ID",
+    id: "sky-ticket",
+    company: "Binar Academy",
+    role: "Back End JavaScript - With AI Literacy & Global Certification Class — MSIB Studi Independen",
+    location: "Remote",
+    period: "September 2024 — Desember 2024",
+    duration: "4 months",
+    isCurrent: false,
     highlights: [
-      "Developed custom e-commerce solutions for 10+ clients using Next.js and Stripe.",
-      "Built a headless CMS integration that reduced content update time by 60%.",
-      "Optimized database queries in PostgreSQL, reducing server response times.",
+      "Mengembangkan backend Sky Ticket, website pemesanan tiket pesawat bersama tim 8 orang.",
+      "Mendesain database dan relasi menggunakan PostgreSQL dan Prisma serta mengembangkan REST API.",
+      "Mengimplementasikan authentication menggunakan JWT, OTP email, Google OAuth, role-based access, dan refresh token.",
+      "Melakukan testing dengan Jest serta deployment ke AWS menggunakan CI/CD GitHub Actions.",
     ],
   },
   {
-    id: "3",
-    role: "Junior Web Developer",
-    company: "Digital Agency",
-    period: "2021 - 2022",
-    location: "Nganjuk, ID",
+    id: "unpkediri",
+    company: "Universitas Nusantara PGRI Kediri",
+    role: "S1 Sistem Informasi",
+    location: "Kediri, Jawa Timur",
+    period: "2022 — 2026",
+    duration: "4 years",
+    isCurrent: false,
     highlights: [
-      "Created responsive landing pages and interactive web experiences.",
-      "Collaborated closely with UI/UX designers to implement pixel-perfect designs.",
-      "Maintained and updated existing WordPress and React websites.",
+      "Mempelajari pemrograman, analisis dan perancangan sistem, database, web development, proses bisnis, dan UI/UX.",
+      "Menyelesaikan skripsi mengenai evaluasi kinerja YOLOv8 Nano untuk deteksi multi-objek logistik pendaki.",
+      "Mengembangkan kemampuan analisis, problem solving, dan kerja tim melalui berbagai project selama perkuliahan.",
     ],
   },
 ];

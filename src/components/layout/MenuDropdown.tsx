@@ -15,10 +15,8 @@ interface MenuDropdownProps {
 }
 
 const navLinks = [
-  { name: "About", href: "/about", description: "Navigate to About", icon: User },
-  { name: "Exploration", href: "/exploration", description: "Navigate to Exploration", icon: Globe },
-  { name: "Blog", href: "https://syahrulfauzi.com", description: "Open in new tab", icon: BookOpen, external: true },
-  { name: "Links", href: "https://sfauzi.dev/connect", description: "Open in new tab", icon: LinkIcon, external: true },
+  { name: "About", href: "/about", description: "Navigate to About", icon: User, external: false },
+  { name: "Exploration", href: "/exploration", description: "Navigate to Exploration", icon: Globe, external: false },
 ];
 
 const socialLinks = [
