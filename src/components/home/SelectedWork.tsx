@@ -12,9 +12,9 @@ export function SelectedWork() {
   return (
     <section className="max-w-6xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
       <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Selected Work</h2>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">Selected Work</h2>
         <p className="text-muted-foreground text-base max-w-2xl mx-auto">
-          A showcase of my recent projects highlighting creativity, detail, and innovation.
+          Hand-picked projects that reflect my craft — built with precision, purpose, and a sharp eye for detail.
         </p>
       </div>
 
@@ -43,7 +43,7 @@ export function SelectedWork() {
 
             {/* Title Row: Title on left, action buttons on right */}
             <div className="flex items-start justify-between gap-4 mb-4">
-              <h3 className="text-2xl md:text-[26px] font-semibold text-foreground leading-tight flex-1">
+              <h3 className="text-xl sm:text-2xl md:text-[26px] font-semibold text-foreground leading-tight flex-1 min-w-0">
                 {project.title}
               </h3>
               <div className="flex items-center gap-3 flex-shrink-0 pt-1">

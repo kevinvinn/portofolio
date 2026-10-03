@@ -52,11 +52,11 @@ export function Publications() {
     <section className="max-w-4xl mx-auto px-4 py-20 sm:px-6 lg:px-8 border-t border-border/50">
       {/* Header with Metrics */}
       <div className="text-center mb-12">
-        <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
           Publications
         </h2>
         <p className="text-muted-foreground text-base max-w-2xl mx-auto mb-8">
-          Academic papers, research journals, and technical articles.
+          Research and writing that goes beyond the screen — ideas documented, peer-reviewed, and published.
         </p>
       </div>
 
@@ -72,7 +72,7 @@ export function Publications() {
             className="w-full bg-background border border-border rounded-xl py-3 pl-12 pr-4 text-foreground focus:outline-none focus:border-foreground/50 transition-colors"
           />
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <span className="px-4 py-1.5 rounded-full text-xs font-medium bg-foreground text-background">
             All
           </span>
@@ -90,10 +90,9 @@ export function Publications() {
         {filteredPubs.map((pub, idx) => (
           <div
             key={pub.id}
-            className="group flex flex-col md:flex-row gap-4 md:gap-8 p-4 md:p-6 rounded-2xl hover:bg-muted/30 transition-colors border border-transparent hover:border-border/50"
-          >
+            className="group flex flex-col md:flex-row gap-4 md:gap-8 p-4 md:p-6 rounded-2xl hover:bg-muted/30 transition-colors border border-transparent hover:border-border/50"          >
             {/* Year Column */}
-            <div className="w-16 flex-shrink-0 pt-1">
+            <div className="md:w-16 flex-shrink-0 pt-1">
               <div className="font-bold text-foreground">{pub.year}</div>
               <div className="text-xs text-muted-foreground mt-1">
                 #{filteredPubs.length - idx}

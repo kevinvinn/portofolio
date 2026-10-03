@@ -72,7 +72,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                   </div>
                   <div>
                     <div className="font-semibold text-sm text-foreground">{link.name}</div>
-                    <div className="text-xs text-muted-foreground">{link.handle}</div>
+                    <div className="text-xs text-muted-foreground truncate max-w-[180px]">{link.handle}</div>
                   </div>
                 </div>
                 <div className="text-muted-foreground group-hover:text-foreground transition-colors">

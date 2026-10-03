@@ -30,9 +30,9 @@ export function Exploration() {
   return (
     <section className="max-w-6xl mx-auto px-4 py-20 sm:px-6 lg:px-8 border-t border-border/50">
       <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Exploration</h2>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">Exploration</h2>
         <p className="text-muted-foreground text-base max-w-2xl mx-auto">
-          A collection of creative projects, experiments, and visual explorations that showcase my design process and innovative thinking
+          Side quests and passion projects — a raw look at how I experiment, iterate, and push creative boundaries.
         </p>
       </div>
 
@@ -102,7 +102,7 @@ export function Exploration() {
               
               <button 
                 onClick={() => setSelectedImage(null)}
-                className="absolute -top-12 right-0 md:-right-12 w-10 h-10 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-colors pointer-events-auto"
+                className="absolute top-2 right-2 md:-top-12 md:-right-12 w-10 h-10 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-colors pointer-events-auto"
               >
                 <X className="w-5 h-5" />
               </button>

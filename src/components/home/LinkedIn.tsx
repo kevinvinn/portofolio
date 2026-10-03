@@ -17,9 +17,9 @@ export function LinkedIn() {
   return (
     <section className="max-w-6xl mx-auto px-4 py-20 sm:px-6 lg:px-8 border-t border-border/50">
       <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">My Recently in LinkedIn</h2>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">My Recently in LinkedIn</h2>
         <p className="text-muted-foreground text-base max-w-2xl mx-auto">
-          A glimpse into my latest activities, thoughts, and professional journey—directly from my LinkedIn.
+          Real updates, real growth — a window into my professional world, straight from LinkedIn.
         </p>
       </div>
 
@@ -31,7 +31,8 @@ export function LinkedIn() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.5, delay: idx * 0.1 }}
-            className="group relative bg-[#f3f4f6] dark:bg-zinc-900 border border-transparent dark:border-zinc-800 rounded-xl p-4 flex flex-col h-[220px] overflow-hidden"
+            className="group relative bg-[#f3f4f6] dark:bg-zinc-900 border border-transparent dark:border-zinc-800 rounded-xl p-4 flex flex-col min-h-[200px] sm:h-[220px] overflow-hidden cursor-pointer"
+            onClick={() => setSelectedPost(post.id)}
           >
             {/* Header */}
             <div className="flex items-start justify-between mb-3">
@@ -63,7 +64,7 @@ export function LinkedIn() {
             </div>
 
             {/* Hover Action Button (Bottom Right) */}
-            <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+            <div className="absolute bottom-3 right-3 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
               <button 
                 onClick={() => setSelectedPost(post.id)}
                 className="bg-[#111] dark:bg-white text-white dark:text-black px-4 py-1.5 rounded-full font-semibold text-[13px] shadow-sm pointer-events-auto"

@@ -34,7 +34,7 @@ export function MenuDropdown({ isOpen, onClose }: MenuDropdownProps) {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: -10, scale: 0.95 }}
           transition={{ duration: 0.2 }}
-          className="absolute right-4 md:right-8 top-full mt-2 w-80 bg-background border border-border rounded-2xl shadow-2xl overflow-hidden z-50"
+          className="absolute right-2 md:right-8 top-full mt-2 w-[min(320px,calc(100vw-1rem))] bg-background border border-border rounded-2xl shadow-2xl overflow-hidden z-50"
         >
           <div className="p-4">
             <div className="space-y-1 mb-4">

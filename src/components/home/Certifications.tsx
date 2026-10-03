@@ -12,13 +12,12 @@ export function Certifications() {
   return (
     <section className="max-w-6xl mx-auto px-4 py-20 sm:px-6 lg:px-8 border-t border-border/50 bg-muted/10">
       <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
           My Certifications
         </h2>
 
         <p className="text-muted-foreground text-base max-w-2xl mx-auto">
-          Certificates and achievements from my academic and professional
-          development journey.
+          Credentials that reflect my commitment to continuous learning — from industry programs to academic excellence.
         </p>
       </div>
 

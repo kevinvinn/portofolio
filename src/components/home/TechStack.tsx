@@ -96,13 +96,13 @@ export function TechStack() {
     <section className="w-full max-w-6xl mx-auto px-4 py-20 sm:px-6 lg:px-8 border-t border-border/50">
       {/* TITLE */}
       <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
           My Stack
         </h2>
 
         <p className="text-muted-foreground text-base max-w-xl mx-auto">
-          The tools and technologies I use to bring ideas to life and create
-          exceptional digital experiences
+          My go-to arsenal — the technologies and tools I rely on to ship
+          fast, build smart, and deliver great products.
         </p>
       </div>
 
@@ -141,8 +141,8 @@ export function TechStack() {
                   onClick={() => toggleSection(stack.id)}
                   className="
                     w-full
-                    px-6
-                    py-6
+                    px-4 py-5
+                    sm:px-6 sm:py-6
                     flex
                     items-center
                     justify-between
@@ -214,14 +214,14 @@ export function TechStack() {
                       }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 pb-8 flex flex-wrap gap-4">
+                      <div className="px-4 pb-6 sm:px-6 sm:pb-8 flex flex-wrap gap-3 sm:gap-4">
                         {stack.items.map((item) => (
                           <div
                             key={item.name}
                             title={item.name}
                             className="
-                              w-[52px]
-                              h-[52px]
+                              w-9 h-9
+                              sm:w-[52px] sm:h-[52px]
                               shrink-0
                               rounded-full
                               bg-[#f8f9fa]

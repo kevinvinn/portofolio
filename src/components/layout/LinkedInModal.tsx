@@ -119,7 +119,7 @@ export function LinkedInModal({ isOpen, onClose, postId, postContent }: LinkedIn
 
           {/* Content (Scrollable) */}
           <div className="p-0 overflow-y-auto custom-scrollbar flex-1 bg-background">
-            <div className="px-4 py-3 text-[14px] md:text-[15px] text-foreground/90 whitespace-pre-wrap leading-relaxed">
+            <div className="px-4 py-3 text-sm md:text-base text-foreground/90 whitespace-pre-wrap leading-relaxed">
               {renderTextWithLinks(postContent.text)}
             </div>
             
@@ -188,13 +188,13 @@ export function LinkedInModal({ isOpen, onClose, postId, postContent }: LinkedIn
               <MessageSquare className="w-5 h-5" />
               <span>Comment</span>
             </a>
-            <a href={postContent.url} target="_blank" rel="noreferrer" className="flex-1 hidden sm:flex items-center justify-center gap-2 py-3 rounded-md hover:bg-muted transition-colors text-muted-foreground font-semibold text-sm">
+            <a href={postContent.url} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-2 py-3 rounded-md hover:bg-muted transition-colors text-muted-foreground font-semibold text-sm">
               <Share2 className="w-5 h-5" />
-              <span>Share</span>
+              <span className="hidden sm:inline">Share</span>
             </a>
             <a href={postContent.url} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-2 py-3 rounded-md hover:bg-muted transition-colors text-muted-foreground font-semibold text-sm">
               <Send className="w-5 h-5 -rotate-45 -mt-1" />
-              <span>Send</span>
+              <span className="hidden sm:inline">Send</span>
             </a>
           </div>
         </motion.div>

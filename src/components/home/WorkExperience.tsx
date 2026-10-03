@@ -22,7 +22,7 @@ export function WorkExperience() {
       <div className="flex flex-col md:flex-row gap-12 lg:gap-24">
         {/* Left Column: Heading */}
         <div className="w-full md:w-1/3 shrink-0">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground sticky top-24 leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground md:sticky top-24 leading-tight">
             Experience
           </h2>
         </div>

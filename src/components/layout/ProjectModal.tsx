@@ -73,7 +73,7 @@ export function ProjectModal({ isOpen, onClose, projectId }: ProjectModalProps) 
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="relative w-full max-w-6xl h-full max-h-[90vh] bg-background rounded-3xl overflow-hidden shadow-2xl flex flex-col"
+          className="relative w-full max-w-6xl h-full max-h-[85vh] sm:max-h-[90vh] bg-background rounded-3xl overflow-hidden shadow-2xl flex flex-col"
         >
           {/* Sticky Header */}
           <div className="flex items-center justify-between p-4 px-6 border-b border-border bg-background sticky top-0 z-10">
@@ -82,7 +82,7 @@ export function ProjectModal({ isOpen, onClose, projectId }: ProjectModalProps) 
             <div className="flex items-center justify-end gap-3 flex-1">
               <button 
                 onClick={goToNextProject}
-                className="hidden md:flex items-center gap-1 px-4 py-2 rounded-full bg-muted text-sm font-medium hover:bg-border transition-colors"
+                className="hidden sm:flex items-center gap-1 px-4 py-2 rounded-full bg-muted text-sm font-medium hover:bg-border transition-colors"
               >
                 Next <ChevronRight className="w-4 h-4" />
               </button>
@@ -93,7 +93,7 @@ export function ProjectModal({ isOpen, onClose, projectId }: ProjectModalProps) 
           </div>
 
           {/* Content Body (2 Columns) */}
-          <div className="flex flex-col md:flex-row flex-1 overflow-hidden">
+          <div className="flex flex-col md:flex-row flex-1 overflow-hidden" style={{ WebkitOverflowScrolling: 'touch' }}>
             
             {/* Left Column: Description */}
             <div className="w-full md:w-3/5 lg:w-2/3 p-6 md:p-10 overflow-y-auto custom-scrollbar">
@@ -187,6 +187,14 @@ export function ProjectModal({ isOpen, onClose, projectId }: ProjectModalProps) 
 
               {/* Connect With Me */}
               <div className="mt-auto pt-8 border-t border-border">
+                <div className="flex sm:hidden mb-6">
+                  <button 
+                    onClick={goToNextProject}
+                    className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-foreground text-background font-semibold"
+                  >
+                    Next Project <ChevronRight className="w-5 h-5" />
+                  </button>
+                </div>
                 <h3 className="font-bold text-foreground mb-4">Connect With Me</h3>
                 <p className="text-sm text-muted-foreground mb-4">
                   Interested in collaborating or have a question? Let&apos;s get in touch!

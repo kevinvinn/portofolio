@@ -14,7 +14,7 @@ import { ScrollRestorer } from "@/components/layout/ScrollRestorer";
 
 export const metadata: Metadata = {
   title: "Kevin R Portofolio",
-  description: "Creative Fullstack Developer passionate about sleek design.",
+  description: "Fullstack Developer crafting clean interfaces and scalable systems — where thoughtful design meets solid engineering.",
   icons: {
     icon: '/icon.png', // Menggunakan icon.png untuk title/tab browser
   },
@@ -36,7 +36,7 @@ export default function RootLayout({
           
           <Navbar />
           
-          <main className="min-h-screen pt-24">
+          <main className="min-h-screen pt-16">
             {children}
           </main>
           

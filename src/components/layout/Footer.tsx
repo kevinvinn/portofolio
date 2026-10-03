@@ -17,19 +17,19 @@ export function Footer() {
           {/* Top CTA Area */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-20">
             <div className="max-w-md">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground mb-4 leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground mb-4 leading-tight">
                 <span className="flex items-center gap-3">
-                  <span className="text-4xl md:text-5xl">📬</span>
-                  Got an idea?
+                  <span className="text-4xl md:text-5xl">💡</span>
+                  Let's build something
                 </span>
-                <span className="block mt-1">Share with me</span>
+                <span className="block mt-1">remarkable.</span>
               </h2>
               <p className="text-muted-foreground text-lg">
-                Need inspiration for your next web project? Feel free to reach out for an exciting collaboration!
+                Have a project in mind or just want to connect? I'm always open to meaningful collaborations and new challenges.
               </p>
             </div>
             
-            <div className="flex flex-col items-center gap-4">
+            <div className="relative flex flex-col items-center gap-4">
               <button
                 onClick={() => setIsContactOpen(true)}
                 className="relative inline-flex items-center gap-3 bg-black dark:bg-white text-white dark:text-black rounded-full pl-2 pr-6 py-2 transition-transform hover:scale-105 shadow-xl"
@@ -39,7 +39,7 @@ export function Footer() {
                 </div>
                 <span className="font-semibold text-sm">Get in touch</span>
               </button>
-              <div className="absolute -left-12 -bottom-12 w-20 h-20 opacity-80 pointer-events-none animate-pulse">
+              <div className="hidden md:block absolute -left-12 -bottom-12 w-20 h-20 opacity-80 pointer-events-none animate-pulse">
                 {/* SVG representing the cursor/arrow graphic */}
                 <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M20 20 L80 40 L50 50 L40 80 Z" fill="#4f46e5" stroke="#312e81" strokeWidth="2" />

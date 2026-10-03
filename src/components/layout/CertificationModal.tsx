@@ -48,12 +48,12 @@ export function CertificationModal({ isOpen, onClose, cert }: CertificationModal
           onClick={(e) => e.stopPropagation()}
         >
           {/* Top Section: Header & Meta */}
-          <div className="flex-shrink-0 bg-background pt-8 px-8">
+          <div className="flex-shrink-0 bg-background pt-5 px-4 sm:pt-8 sm:px-8">
             
             {/* Title Row & Close Button */}
             <div className="flex items-start justify-between gap-4 mb-4">
               <div>
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3 leading-tight">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-3 leading-snug">
                   {cert.title}
                 </h2>
                 <div className="flex items-center gap-4 text-sm font-medium">
@@ -84,7 +84,7 @@ export function CertificationModal({ isOpen, onClose, cert }: CertificationModal
           </div>
 
           {/* Bottom Section: Image Viewer (Scrollable) */}
-          <div className="flex-1 overflow-y-auto custom-scrollbar px-8 pb-8">
+          <div className="flex-1 overflow-y-auto custom-scrollbar px-4 sm:px-8 pb-6 sm:pb-8">
             <div className="w-full bg-[#f3f4f6] dark:bg-[#1a1a1a] rounded-2xl p-6 md:p-10 flex items-center justify-center">
               <img 
                 src={cert.image} 
