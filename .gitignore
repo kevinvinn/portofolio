@@ -1,4 +1,4 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# See https://help.github.com/articles/ignoring-files/
 
 # dependencies
 /node_modules
@@ -13,7 +13,7 @@
 # testing
 /coverage
 
-# next.js
+# Next.js
 /.next/
 /out/
 
@@ -29,13 +29,74 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+*.log
 
-# env files (can opt-in for committing if needed)
+# environment files and secrets
 .env*
+!.env.example
+!.env.sample
 
-# vercel
+# Vercel
 .vercel
 
-# typescript
+# TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# AI coding agent local configuration and session data
+.opencode/
+.opencode-*/
+.claude/
+.gemini/
+.cursor/
+.windsurf/
+.aider*
+.continue/
+.amp/
+.codex/
+
+# Local agent logs, traces, and temporary artifacts
+**/agent-logs/
+**/agent-traces/
+**/agent-sessions/
+**/agent-cache/
+**/agent-tmp/
+**/ai-agent-logs/
+**/ai-agent-cache/
+
+# Local development artifacts
+*.local
+*.local.*
+.envrc
+.DS_Store?
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+
+# Local editor and IDE settings
+.vscode/
+.idea/
+*.code-workspace
+
+# Playwright and browser-test artifacts
+/playwright-report/
+/test-results/
+/blob-report/
+/screenshots-temp/
+/artifacts-temp/
+
+# AI agent instruction files
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+.opencode/
+.claude/
+.gemini/
+.cursor/
+.windsurf/
