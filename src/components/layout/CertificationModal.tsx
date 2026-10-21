@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { X, Calendar, CheckCircle2 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useLanguage } from "@/components/language-provider";
 
 interface CertificationModalProps {
   isOpen: boolean;
@@ -18,6 +19,7 @@ interface CertificationModalProps {
 }
 
 export function CertificationModal({ isOpen, onClose, cert }: CertificationModalProps) {
+  const { copy } = useLanguage();
   const modalRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLElement | null>(null);
 
@@ -131,14 +133,14 @@ export function CertificationModal({ isOpen, onClose, cert }: CertificationModal
                   <span className="text-foreground">{cert.issuer}</span>
                   <div className="flex items-center gap-1.5 rounded-full bg-green-100 px-2.5 py-1 text-xs text-green-700 dark:bg-green-900/30 dark:text-green-400">
                     <CheckCircle2 className="h-3.5 w-3.5" />
-                    Verified
+                    {copy.certifications.verified}
                   </div>
                 </div>
               </div>
               <button 
                 type="button"
                 onClick={onClose} 
-                aria-label="Close certification details"
+                aria-label={copy.certifications.close}
                 className="flex-shrink-0 rounded-full bg-surface-muted p-2.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 <X className="h-5 w-5" />
@@ -152,7 +154,7 @@ export function CertificationModal({ isOpen, onClose, cert }: CertificationModal
             {(cert.date || cert.validity) && (
               <div className="flex items-center gap-2 text-sm text-foreground font-medium mb-6">
                 <Calendar className="w-4 h-4 text-muted-foreground" />
-                <span className="text-muted-foreground">Year / Period:</span> {cert.date || cert.validity}
+                <span className="text-muted-foreground">{copy.certifications.yearPeriod}</span> {cert.date || cert.validity}
               </div>
             )}
 

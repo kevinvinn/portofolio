@@ -5,6 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NavMenu } from "./NavMenu";
 import { SearchModal } from "./SearchModal";
+import { LanguageToggle } from "./LanguageToggle";
+import { useLanguage } from "@/components/language-provider";
 
 const SCROLL_DELTA = 8;
 const TOP_OFFSET = 32;
@@ -12,6 +14,7 @@ const SOLID_OFFSET = 24;
 
 export function Navbar() {
   const pathname = usePathname();
+  const { copy } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
@@ -145,7 +148,7 @@ export function Navbar() {
           <div className="flex min-w-0 items-center gap-4 md:gap-6">
             <Link
               href="/"
-              aria-label="Kevin Risky Abadi, home"
+              aria-label={copy.nav.logoHome}
               className="relative inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-transparent md:h-16 md:w-16"
             >
               <svg
@@ -166,7 +169,7 @@ export function Navbar() {
                     textLength="234"
                     lengthAdjust="spacingAndGlyphs"
                   >
-                    KEVIN.DEV • FULLSTACK DEVELOPER •
+                    {copy.nav.badge}
                   </textPath>
                 </text>
               </svg>
@@ -184,32 +187,36 @@ export function Navbar() {
                     : "pointer-events-none -translate-y-1 opacity-0",
                 ].join(" ")}
               >
-                <span className="whitespace-nowrap text-hero-body">Portfolio 2026</span>
+                <span className="whitespace-nowrap text-hero-body">{copy.nav.portfolio}</span>
                 <span aria-hidden="true" className="h-3 w-px bg-hero-divider" />
                 <span className="whitespace-nowrap text-hero-body">Nganjuk, Indonesia</span>
               </span>
             )}
           </div>
 
-          <button
-            ref={menuButtonRef}
-            type="button"
-            onClick={openMenu}
-            aria-label="Open navigation menu"
-            aria-expanded={isMenuOpen}
-            aria-controls="site-nav-panel"
-            className={[
-              "group inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-transparent md:h-14 md:w-14",
-              showIntroMeta
-                ? "border-hero-border bg-hero-ghost-bg text-hero-fg hover:border-hero-border-strong hover:bg-hero-ghost-hover"
-                : "border-border bg-background/55 text-foreground backdrop-blur-md hover:bg-surface-muted/85",
-            ].join(" ")}
-          >
-            <span aria-hidden="true" className="flex w-5 flex-col gap-[5px]">
-              <span className="block h-px w-full bg-current transition-transform duration-300 group-hover:translate-x-0.5" />
-              <span className="block h-px w-full bg-current transition-transform duration-300" />
-            </span>
-          </button>
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+            <LanguageToggle tone={showIntroMeta ? "hero" : "page"} />
+
+            <button
+              ref={menuButtonRef}
+              type="button"
+              onClick={openMenu}
+              aria-label={copy.nav.openMenu}
+              aria-expanded={isMenuOpen}
+              aria-controls="site-nav-panel"
+              className={[
+                "group inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-transparent md:h-14 md:w-14",
+                showIntroMeta
+                  ? "border-hero-border bg-hero-ghost-bg text-hero-fg hover:border-hero-border-strong hover:bg-hero-ghost-hover"
+                  : "border-border bg-background/55 text-foreground backdrop-blur-md hover:bg-surface-muted/85",
+              ].join(" ")}
+            >
+              <span aria-hidden="true" className="flex w-5 flex-col gap-[5px]">
+                <span className="block h-px w-full bg-current transition-transform duration-300 group-hover:translate-x-0.5" />
+                <span className="block h-px w-full bg-current transition-transform duration-300" />
+              </span>
+            </button>
+          </div>
         </div>
       </header>
 

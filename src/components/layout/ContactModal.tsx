@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import { Mail, ArrowUpRight, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useLanguage } from "@/components/language-provider";
 
 const GithubIcon = (props: React.ComponentProps<"svg">) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.2c3-.3 6-1.5 6-6.8 0-1.5-.5-2.8-1.5-3.8.1-.4.7-1.8-.1-3.8 0 0-1.2-.4-3.9 1.4a13.3 13.3 0 0 0-7 0C6.2 1.6 5 2 5 2a10.8 10.8 0 0 0-.1 3.8A5.4 5.4 0 0 0 3.4 9.6c0 5.3 3 6.5 6 6.8-.4.3-.8 1-.9 2-.9.4-3.1 1.1-4.5-1.3 0 0-.8-1.5-2.2-1.6 0 0-1.4-.1-.1 1 0 0 1 1.7 1.6 3.8 0 0 1.5.5 3.3-.2.1 1 .1 2.2.1 2.2"/></svg>;
 const LinkedinIcon = (props: React.ComponentProps<"svg">) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>;
@@ -21,6 +22,7 @@ const contactLinks = [
 ];
 
 export function ContactModal({ isOpen, onClose }: ContactModalProps) {
+  const { copy } = useLanguage();
   const modalRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLElement | null>(null);
 
@@ -123,13 +125,13 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
           {/* Header */}
           <div className="flex items-center justify-between p-6 pb-4 border-b border-border/50">
             <div>
-              <h2 id="contact-modal-title" className="text-xl font-bold text-foreground">Get in touch</h2>
-              <p className="text-sm text-muted-foreground mt-1">Choose a platform to connect</p>
+              <h2 id="contact-modal-title" className="text-xl font-bold text-foreground">{copy.contactModal.title}</h2>
+              <p className="text-sm text-muted-foreground mt-1">{copy.contactModal.subtitle}</p>
             </div>
             <button
               type="button"
               onClick={onClose}
-              aria-label="Close contact dialog"
+              aria-label={copy.contactModal.close}
               className="inline-flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               <X className="w-5 h-5" />

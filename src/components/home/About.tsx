@@ -3,39 +3,17 @@
 import React from "react";
 import { Server, Lightbulb, Users, Layers, GraduationCap, MapPin } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
+import { useLanguage } from "@/components/language-provider";
 
 const PILLARS = [
-  {
-    id: "backend",
-    title: "Backend Development",
-    icon: Server,
-    description:
-      "Enjoy building the behind-the-scenes parts of applications that keep features working reliably, cleanly, and fast.",
-  },
-  {
-    id: "problem-solving",
-    title: "Problem Solving",
-    icon: Lightbulb,
-    description:
-      "Like breaking down complicated problems, exploring practical solutions, and learning directly from the build process.",
-  },
-  {
-    id: "collaboration",
-    title: "Collaboration",
-    icon: Users,
-    description:
-      "Value clear communication, sharing ideas openly, and working constructively with teammates toward a common goal.",
-  },
-  {
-    id: "fullstack",
-    title: "Fullstack Development",
-    icon: Layers,
-    description:
-      "Interested in how responsive user interfaces and solid backend systems come together to create complete digital experiences.",
-  },
-];
+  { id: "backend", icon: Server },
+  { id: "problem-solving", icon: Lightbulb },
+  { id: "collaboration", icon: Users },
+  { id: "fullstack", icon: Layers },
+] as const;
 
 export function About() {
+  const { copy } = useLanguage();
   const prefersReducedMotion = useReducedMotion();
 
   return (
@@ -43,7 +21,7 @@ export function About() {
       {/* Chapter Marker */}
       <div className="flex items-center gap-2 mb-8">
         <span className="text-xs font-mono font-semibold tracking-widest text-primary uppercase">
-          01 // ABOUT
+          {copy.about.eyebrow}
         </span>
         <div className="h-[1px] w-12 bg-border" />
       </div>
@@ -58,27 +36,23 @@ export function About() {
           className="lg:col-span-5 flex flex-col space-y-6"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-foreground tracking-tight leading-tight">
-            Hi, I&apos;m Kevin, a developer who enjoys building things that simply work.
+            {copy.about.heading}
           </h2>
 
           <div className="space-y-4 text-base text-muted-foreground leading-relaxed">
-            <p>
-              I&apos;m a developer from Nganjuk, Indonesia who loves turning practical ideas into useful digital experiences. I enjoy exploring how software operates under the hood, learning modern tools, and finding straightforward ways to solve real problems.
-            </p>
-            <p>
-              I consider development an ongoing craft. Every project, collaboration, and tricky debugging session gives me an opportunity to learn something new and build something better than before.
-            </p>
+            <p>{copy.about.paragraphs.intro}</p>
+            <p>{copy.about.paragraphs.craft}</p>
           </div>
 
           {/* Verified Metadata Badges */}
           <div className="flex flex-col sm:flex-row flex-wrap gap-2.5 pt-2">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-border bg-surface-muted text-xs font-medium text-foreground">
               <GraduationCap className="w-4 h-4 text-primary shrink-0" />
-              <span>Universitas Nusantara PGRI Kediri (2022–2026)</span>
+              <span>{copy.about.education}</span>
             </div>
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-border bg-surface-muted text-xs font-medium text-foreground">
               <MapPin className="w-4 h-4 text-accent shrink-0" />
-              <span>Nganjuk, Jawa Timur, Indonesia</span>
+              <span>{copy.about.location}</span>
             </div>
           </div>
         </motion.div>
@@ -87,6 +61,7 @@ export function About() {
         <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
           {PILLARS.map((pillar, idx) => {
             const Icon = pillar.icon;
+            const pillarCopy = copy.about.pillars[pillar.id];
             return (
               <motion.div
                 key={pillar.id}
@@ -101,10 +76,10 @@ export function About() {
                     <Icon className="w-5 h-5" />
                   </div>
                   <h3 className="text-lg font-bold text-foreground mb-2 tracking-tight">
-                    {pillar.title}
+                    {pillarCopy.title}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    {pillar.description}
+                    {pillarCopy.description}
                   </p>
                 </div>
               </motion.div>

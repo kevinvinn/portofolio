@@ -5,14 +5,20 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { Share2, ArrowUpRight, Check } from "lucide-react";
-import { projectsData, type Project } from "@/data/projects";
+import { projectsData, localizeProject, type LocalizedProject } from "@/data/projects";
 import { ProjectModal } from "../layout/ProjectModal";
+import { useLanguage } from "@/components/language-provider";
+import { fill } from "@/lib/i18n";
 
 export function SelectedWork() {
+  const { language, copy } = useLanguage();
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const prefersReducedMotion = useReducedMotion();
+  const localizedProjects = projectsData.map((project) =>
+    localizeProject(project, language),
+  );
 
-  const handleShare = async (project: Project, e: React.MouseEvent) => {
+  const handleShare = async (project: LocalizedProject, e: React.MouseEvent) => {
     e.stopPropagation();
     e.preventDefault();
     const shareUrl =
@@ -21,7 +27,7 @@ export function SelectedWork() {
         : "";
     const shareData = {
       title: project.title,
-      text: `${project.title} - Portfolio Kevin Risky`,
+      text: `${project.title} - ${copy.selectedWork.shareText}`,
       url: shareUrl,
     };
 
@@ -50,7 +56,7 @@ export function SelectedWork() {
       {/* Chapter Marker */}
       <div className="flex items-center gap-2 mb-8">
         <span className="text-xs font-mono font-semibold tracking-widest text-primary uppercase">
-          04 // SELECTED PROJECTS
+          {copy.selectedWork.eyebrow}
         </span>
         <div className="h-[1px] w-12 bg-border" />
       </div>
@@ -58,17 +64,17 @@ export function SelectedWork() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
         <div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-foreground tracking-tight">
-            Selected Work
+            {copy.selectedWork.title}
           </h2>
           <p className="text-muted-foreground text-base max-w-2xl mt-3">
-            A selection of projects reflecting backend architectures, responsive applications, and computer vision research.
+            {copy.selectedWork.intro}
           </p>
         </div>
       </div>
 
       {/* 2-Column Neo-Brutalist Project Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-        {projectsData.map((project, idx) => (
+        {localizedProjects.map((project, idx) => (
           <motion.article
             key={project.id}
             initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 28 }}
@@ -86,7 +92,9 @@ export function SelectedWork() {
               <Link
                 href={`/projects/${project.slug}`}
                 className="relative aspect-[16/10] rounded-2xl overflow-hidden border-2 border-border-strong bg-surface-muted mb-6 block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring group/img"
-                aria-label={`View case study for ${project.title}`}
+                aria-label={fill(copy.selectedWork.viewCaseStudy, {
+                  title: project.title,
+                })}
               >
                 <Image
                   src={project.image}
@@ -119,13 +127,15 @@ export function SelectedWork() {
                     onClick={(e) => handleShare(project, e)}
                     aria-label={
                       copiedId === project.id
-                        ? "Link copied to clipboard"
-                        : `Share link for ${project.title}`
+                        ? copy.selectedWork.linkCopied
+                        : fill(copy.selectedWork.shareLink, {
+                            title: project.title,
+                          })
                     }
                     title={
                       copiedId === project.id
-                        ? "Link copied!"
-                        : "Share project"
+                        ? copy.selectedWork.linkCopiedShort
+                        : copy.selectedWork.shareProject
                     }
                     className="w-10 h-10 rounded-full border-2 border-border-strong bg-surface hover:bg-foreground hover:text-background flex items-center justify-center text-foreground transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer"
                   >
@@ -139,8 +149,10 @@ export function SelectedWork() {
                   {/* Dedicated Case Study Link */}
                   <Link
                     href={`/projects/${project.slug}`}
-                    aria-label={`Read case study for ${project.title}`}
-                    title="View case study"
+                    aria-label={fill(copy.selectedWork.readCaseStudy, {
+                      title: project.title,
+                    })}
+                    title={copy.selectedWork.viewCaseStudyTitle}
                     className="w-10 h-10 rounded-full border-2 border-border-strong bg-foreground text-background hover:bg-primary hover:border-primary hover:text-primary-foreground flex items-center justify-center transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer"
                   >
                     <ArrowUpRight className="w-4 h-4" />

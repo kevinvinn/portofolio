@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useRef } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Search, X } from "lucide-react";
+import { useLanguage } from "@/components/language-provider";
 
 interface NavMenuProps {
   isOpen: boolean;
@@ -13,14 +14,14 @@ interface NavMenuProps {
 }
 
 const sectionLinks = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/#about" },
-  { label: "Tech Stack", href: "/#tech-stack" },
-  { label: "Experience", href: "/#experience" },
-  { label: "Projects", href: "/#projects" },
-  { label: "Certifications", href: "/#certifications" },
-  { label: "Contact", href: "/#contact" },
-];
+  { key: "home", href: "/" },
+  { key: "about", href: "/#about" },
+  { key: "techStack", href: "/#tech-stack" },
+  { key: "experience", href: "/#experience" },
+  { key: "projects", href: "/#projects" },
+  { key: "certifications", href: "/#certifications" },
+  { key: "contact", href: "/#contact" },
+] as const;
 
 const socialLinks = [
   { label: "GitHub", href: "https://github.com/kevinvinn", external: true },
@@ -30,6 +31,7 @@ const socialLinks = [
 ];
 
 export function NavMenu({ isOpen, onClose, onOpenSearch, returnFocusRef }: NavMenuProps) {
+  const { copy } = useLanguage();
   const panelRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const triggerRef = useRef<HTMLElement | null>(null);
@@ -123,7 +125,7 @@ export function NavMenu({ isOpen, onClose, onOpenSearch, returnFocusRef }: NavMe
             id="site-nav-panel"
             role="dialog"
             aria-modal="true"
-            aria-label="Site navigation"
+            aria-label={copy.nav.panelLabel}
             initial={prefersReducedMotion ? { opacity: 0 } : { x: "100%" }}
             animate={prefersReducedMotion ? { opacity: 1 } : { x: 0 }}
             exit={prefersReducedMotion ? { opacity: 0 } : { x: "100%" }}
@@ -136,30 +138,30 @@ export function NavMenu({ isOpen, onClose, onOpenSearch, returnFocusRef }: NavMe
           >
             <div className="flex items-center justify-between border-b border-border pb-5">
               <span className="text-[10px] uppercase tracking-[0.35em] text-muted-foreground">
-                Navigation
+                {copy.nav.panelEyebrow}
               </span>
               <button
                 ref={closeButtonRef}
                 type="button"
                 onClick={onClose}
-                aria-label="Close navigation menu"
+                aria-label={copy.nav.closeMenu}
                 className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-foreground/30 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
               >
                 <X className="h-5 w-5" aria-hidden="true" />
               </button>
             </div>
 
-            <nav aria-label="Primary" className="mt-4 md:mt-5">
+            <nav aria-label={copy.nav.primary} className="mt-4 md:mt-5">
               <ul>
                 {sectionLinks.map((link, index) => (
-                  <li key={link.label}>
+                  <li key={link.key}>
                     <Link
                       href={link.href}
                       onClick={onClose}
                       className="group flex items-center justify-between border-b border-border/70 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface md:py-2"
                     >
                       <span className="text-[1.75rem] font-semibold leading-tight tracking-[-0.03em] text-foreground/85 transition-all duration-300 group-hover:translate-x-1.5 group-hover:text-foreground sm:text-4xl md:text-[2.55rem]">
-                        {link.label}
+                        {copy.nav[link.key]}
                       </span>
                       <span className="font-mono text-[10px] text-muted-foreground/60">
                         {String(index + 1).padStart(2, "0")}
@@ -176,7 +178,7 @@ export function NavMenu({ isOpen, onClose, onOpenSearch, returnFocusRef }: NavMe
               className="group mt-6 inline-flex w-fit items-center gap-3 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface md:mt-8"
             >
               <Search className="h-4 w-4" aria-hidden="true" />
-              <span>Search projects</span>
+              <span>{copy.nav.search}</span>
               <span className="rounded border border-border bg-surface-muted px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
                 Ctrl K
               </span>
@@ -184,7 +186,7 @@ export function NavMenu({ isOpen, onClose, onOpenSearch, returnFocusRef }: NavMe
 
             <div className="mt-auto pt-8">
               <div className="border-t border-border pt-6">
-                <p className="text-[10px] uppercase tracking-[0.35em] text-muted-foreground">Elsewhere</p>
+                <p className="text-[10px] uppercase tracking-[0.35em] text-muted-foreground">{copy.nav.elsewhere}</p>
                 <ul className="mt-4 flex flex-wrap gap-x-7 gap-y-3">
                   {socialLinks.map((social) => (
                     <li key={social.label}>

@@ -6,8 +6,11 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { CertificationModal } from "../layout/CertificationModal";
 import { certificationsData } from "@/data/certifications";
+import { useLanguage } from "@/components/language-provider";
+import { fill } from "@/lib/i18n";
 
 export function Certifications() {
+  const { copy } = useLanguage();
   const [selectedCert, setSelectedCert] = useState<string | null>(null);
   const [hoveredCert, setHoveredCert] = useState<string | null>(null);
   const [mousePos, setMousePos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
@@ -34,16 +37,16 @@ export function Certifications() {
           <div>
             <div className="mb-3 flex items-center gap-2">
               <span className="font-mono text-xs font-semibold uppercase tracking-widest text-primary">
-                05 // CREDENTIALS
+                {copy.certifications.eyebrow}
               </span>
               <div className="h-[1px] w-12 bg-border" />
             </div>
             <h2 className="text-4xl font-black tracking-tight text-foreground sm:text-5xl md:text-6xl">
-              Certifications
+              {copy.certifications.title}
             </h2>
           </div>
           <p className="max-w-md text-sm font-light text-muted-foreground sm:text-base">
-            Verified credentials in backend development, system administration, and enterprise software engineering.
+            {copy.certifications.intro}
           </p>
         </div>
 
@@ -54,6 +57,9 @@ export function Certifications() {
               key={cert.id}
               type="button"
               onClick={() => setSelectedCert(cert.id)}
+              aria-label={fill(copy.certifications.openDetails, {
+                title: cert.title,
+              })}
               onMouseEnter={() => setHoveredCert(cert.id)}
               onMouseLeave={() => setHoveredCert(null)}
               onFocus={() => setHoveredCert(cert.id)}

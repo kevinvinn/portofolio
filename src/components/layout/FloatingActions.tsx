@@ -5,10 +5,12 @@ import { Moon, Sun, ArrowUp } from "lucide-react";
 import { useTheme } from "next-themes";
 import { AnimatePresence, motion } from "framer-motion";
 import { flushSync } from "react-dom";
+import { useLanguage } from "@/components/language-provider";
 
 const emptySubscribe = () => () => {};
 
 export function FloatingActions() {
+  const { copy } = useLanguage();
   const { resolvedTheme, setTheme } = useTheme();
   const mounted = useSyncExternalStore(
     emptySubscribe,
@@ -87,7 +89,7 @@ export function FloatingActions() {
             exit={{ opacity: 0, scale: 0.8, y: 10 }}
             onClick={scrollToTop}
             className="w-12 h-12 rounded-full bg-background border border-border shadow-lg flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-            aria-label="Back to top"
+            aria-label={copy.floatingActions.backToTop}
           >
             <ArrowUp className="w-5 h-5" />
           </motion.button>
@@ -97,7 +99,7 @@ export function FloatingActions() {
       <button
         onClick={toggleTheme}
         className="w-12 h-12 rounded-full bg-background border border-border shadow-lg flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors group"
-        aria-label={resolvedTheme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+        aria-label={resolvedTheme === "dark" ? copy.floatingActions.switchToLight : copy.floatingActions.switchToDark}
       >
         {resolvedTheme === "dark" ? (
           <Sun className="w-5 h-5 group-hover:rotate-45 transition-transform duration-300" />

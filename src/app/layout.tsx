@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Caveat } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { LanguageProvider } from "@/components/language-provider";
 
 // We use Inter as it's a common modern sans-serif
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
@@ -55,13 +56,15 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <ScrollRestorer />
+          <LanguageProvider>
+            <ScrollRestorer />
 
-          <Navbar />
+            <Navbar />
 
-          <main className="min-h-screen">{children}</main>
+            <main className="min-h-screen">{children}</main>
 
-          <FloatingActions />
+            <FloatingActions />
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

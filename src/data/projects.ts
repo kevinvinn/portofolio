@@ -1,3 +1,17 @@
+import type { Language } from "@/lib/i18n";
+
+export interface ProjectTranslation {
+  title: string;
+  category: string;
+  date: string;
+  tags: string[];
+  summary: string;
+  role?: string;
+  overview?: string;
+  features?: string[];
+  description: string;
+}
+
 export interface Project {
   id: string;
   slug: string;
@@ -15,6 +29,28 @@ export interface Project {
   features?: string[];
   githubUrl?: string;
   demoUrl?: string;
+  translations: {
+    id: ProjectTranslation;
+  };
+}
+
+export type LocalizedProject = Omit<Project, "translations">;
+
+export function localizeProject(
+  project: Project,
+  language: Language,
+): LocalizedProject {
+  const { translations, ...base } = project;
+
+  if (language === "en") {
+    return base;
+  }
+
+  return {
+    ...base,
+    ...translations.id,
+    tags: translations.id.tags,
+  };
 }
 
 export const projectsData: Project[] = [
@@ -68,6 +104,48 @@ The application also includes comprehensive REST API documentation using Swagger
       "/projects/project 2/1.5.png",
       "/projects/project 2/1.6.png",
     ],
+    translations: {
+      id: {
+        title:
+          "JEPRETIN - Platform Marketplace Fotografi dan Videografi Berbasis Lokasi",
+        category: "Pengembangan Web",
+        date: "September 2025",
+        tags: [
+          "Node.js",
+          "Express.js",
+          "PostgreSQL",
+          "Prisma",
+          "REST API",
+          "JWT",
+          "Midtrans",
+          "Swagger",
+          "Jest",
+          "Pengembangan Backend",
+        ],
+        summary:
+          "Platform marketplace berbasis lokasi yang menghubungkan pelanggan dengan penyedia jasa fotografi dan videografi.",
+        role: "Pengembang Backend",
+        overview:
+          "JEPRETIN adalah platform marketplace berbasis lokasi yang dirancang untuk menghubungkan pelanggan dengan penyedia jasa fotografi dan videografi. Platform ini membantu pengguna menemukan penyedia, menjelajahi portofolio dan paket layanan, melakukan pemesanan, serta mengelola transaksi melalui sistem terintegrasi.",
+        features: [
+          "Autentikasi pengguna dan kontrol akses berbasis peran dengan JWT",
+          "Pengelolaan profil penyedia, paket layanan, dan portofolio",
+          "Pengelolaan alur pesanan dari pemesanan hingga penyelesaian",
+          "Integrasi payment gateway Midtrans dengan penanganan webhook",
+          "Layanan dompet digital, penarikan dana, ulasan, dan notifikasi terintegrasi",
+          "Dokumentasi REST API dengan Swagger dan pengujian unit dengan Jest",
+        ],
+        description: `JEPRETIN adalah platform marketplace berbasis lokasi yang dirancang untuk menghubungkan pelanggan dengan penyedia jasa fotografi dan videografi. Platform ini membantu pengguna menemukan penyedia, menjelajahi portofolio dan paket layanan, melakukan pemesanan, serta mengelola transaksi melalui sistem terintegrasi.
+
+Backend dikembangkan untuk mendukung operasi marketplace inti, termasuk autentikasi pengguna, pengelolaan penyedia, cakupan layanan, portofolio, pemesanan dan pengelolaan pesanan, pemrosesan pembayaran, dompet digital, penarikan dana, ulasan, notifikasi, dan fitur pendukung lainnya.
+
+Basis data dirancang menggunakan PostgreSQL dan Prisma, dengan relasi terstruktur antara pengguna, penyedia, pesanan, pembayaran, dan entitas lain untuk mendukung proses bisnis aplikasi.
+
+Autentikasi dan otorisasi diimplementasikan menggunakan JWT, akses berbasis peran, hashing password, middleware, dan refresh token. Sistem pembayaran diintegrasikan dengan Midtrans, termasuk penanganan webhook untuk pembaruan status pembayaran.
+
+Aplikasi juga dilengkapi dokumentasi REST API yang komprehensif menggunakan Swagger dan pengujian otomatis menggunakan Jest. Backend dideploy ke Railway dan dikembangkan secara kolaboratif menggunakan GitHub dengan branching, pull request, merge, dan resolusi konflik.`,
+      },
+    },
   },
   {
     id: "2",
@@ -124,6 +202,50 @@ The project was developed collaboratively using Git and GitHub through branching
       "/projects/project 1/Screenshot 2024-12-27 221455.png",
       "/projects/project 1/Screenshot 2024-12-27 221518.png",
     ],
+    translations: {
+      id: {
+        title: "Sky Ticket - Platform Pemesanan Tiket Pesawat Berbasis Web",
+        category: "Pengembangan Web",
+        date: "Desember 2024",
+        tags: [
+          "Node.js",
+          "Express.js",
+          "PostgreSQL",
+          "Prisma",
+          "REST API",
+          "JWT",
+          "Google OAuth",
+          "Redis",
+          "AWS",
+          "GitHub Actions",
+          "Jest",
+        ],
+        summary:
+          "Platform pemesanan tiket pesawat berbasis web yang dikembangkan sebagai proyek akhir program MSIB Batch 7 di Binar Academy.",
+        role: "Pengembang Backend",
+        overview:
+          "Sky Ticket adalah platform pemesanan tiket pesawat berbasis web yang menyediakan sistem bagi pengguna untuk mencari dan memesan penerbangan, mengelola informasi penumpang, memilih kursi, dan memproses pemesanan tiket melalui sistem backend terintegrasi.",
+        features: [
+          "Sistem pencarian penerbangan, informasi penumpang, dan pemilihan kursi",
+          "Autentikasi dengan JWT, hashing password, OTP email, dan Google OAuth",
+          "Perancangan basis data relasional dengan PostgreSQL dan Prisma",
+          "Caching Redis dan kedaluwarsa token otomatis dengan node-cron",
+          "Dokumentasi REST API dengan Swagger dan pengujian dengan Jest",
+          "CI/CD deployment otomatis ke AWS menggunakan GitHub Actions",
+        ],
+        description: `Sky Ticket adalah platform pemesanan tiket pesawat berbasis web yang dikembangkan sebagai proyek akhir program MSIB Batch 7 Studi Independen. Proyek ini dikembangkan secara kolaboratif oleh tim beranggotakan 8 orang yang terdiri dari 4 pengembang frontend dan 4 pengembang backend.
+
+Platform menyediakan sistem bagi pengguna untuk mencari dan memesan penerbangan, mengelola informasi penumpang, memilih kursi, dan memproses pemesanan tiket melalui sistem backend terintegrasi.
+
+Basis data dirancang menggunakan PostgreSQL dan Prisma, termasuk relasi antara pengguna, pemesanan, penumpang, tiket, penerbangan, bandara, maskapai, pesawat, dan pengelolaan kursi.
+
+Sistem autentikasi diimplementasikan menggunakan JWT, akses berbasis peran, middleware, hashing password, refresh token, OTP email, dan Google OAuth. Redis digunakan sebagai mekanisme caching, sedangkan node-cron diimplementasikan untuk mengotomatiskan penghapusan token yang kedaluwarsa.
+
+Backend menyediakan REST API yang didokumentasikan menggunakan Swagger dan diuji menggunakan Jest. Aplikasi dideploy ke AWS menggunakan CI/CD dengan GitHub Actions.
+
+Proyek dikembangkan secara kolaboratif menggunakan Git dan GitHub melalui branching, pull request, merge, dan resolusi konflik, dengan ClickUp digunakan untuk memantau progres proyek. Proyek ini juga dipresentasikan kepada mentor dan pemangku kepentingan MSIB.`,
+      },
+    },
   },
   {
     id: "3",
@@ -161,6 +283,35 @@ The project provided experience in team coordination, project management, commun
       "/projects/project 3/Slide Light 2.png",
       "/projects/project 3/Slide Light 5.png",
     ],
+    translations: {
+      id: {
+        title: "BWeather - Aplikasi Deteksi Cuaca Mobile",
+        category: "Pengembangan Aplikasi Mobile",
+        date: "2024",
+        tags: [
+          "Pengembangan Aplikasi Mobile",
+          "Manajemen Proyek",
+          "Pengembangan Sistem",
+          "Kerja Tim",
+          "Pemecahan Masalah",
+        ],
+        summary:
+          "Aplikasi deteksi cuaca mobile yang dikembangkan untuk Pekan Inovasi Fakultas Teknik.",
+        role: "Manajer Proyek",
+        overview:
+          "BWeather adalah aplikasi deteksi cuaca mobile yang dikembangkan sebagai proyek tim kolaboratif untuk Pekan Inovasi Fakultas Teknik, menghadirkan prakiraan cuaca yang mudah diakses dan metrik lingkungan secara real-time.",
+        features: [
+          "Antarmuka pemantauan cuaca mobile dan visualisasi data cuaca",
+          "Siklus pengembangan penuh dari perencanaan proyek hingga presentasi kepada pemangku kepentingan",
+          "Koordinasi tim lintas fungsi, pemecahan masalah, dan pengambilan keputusan",
+        ],
+        description: `BWeather adalah aplikasi deteksi cuaca mobile yang dikembangkan sebagai proyek tim untuk Pekan Inovasi Fakultas Teknik. Proyek ini dikembangkan secara kolaboratif untuk menyediakan informasi terkait cuaca melalui aplikasi mobile.
+
+Proyek ini melibatkan beberapa tahap pengembangan, termasuk perencanaan proyek, analisis, pengembangan sistem, dan kolaborasi antaranggota tim. Saya berkontribusi sebagai Manajer Proyek, mengoordinasikan tim dan membantu mengelola proses pengembangan dari tahap perencanaan hingga presentasi proyek.
+
+Proyek ini memberikan pengalaman dalam koordinasi tim, manajemen proyek, komunikasi, pemecahan masalah, dan pengambilan keputusan selama proses pengembangan.`,
+      },
+    },
   },
   {
     id: "4",
@@ -202,5 +353,38 @@ The project combines data preparation, model training, object detection, and per
       "/projects/project 4/Screenshot 2026-05-11 222642.png",
       "/projects/project 4/Screenshot 2026-05-31 020326.png",
     ],
+    translations: {
+      id: {
+        title: "Deteksi Multi-Objek untuk Logistik Pendaki (YOLOv8 Nano)",
+        category: "Kecerdasan Buatan / Visi Komputer",
+        date: "2026",
+        tags: [
+          "YOLOv8",
+          "Visi Komputer",
+          "Deteksi Objek",
+          "Roboflow",
+          "Pembelajaran Mesin",
+          "Riset",
+        ],
+        summary:
+          "Penelitian skripsi yang mengevaluasi performa deteksi YOLOv8 Nano pada logistik pendaki dalam kondisi visual yang padat.",
+        role: "Peneliti S1",
+        overview:
+          "Proyek ini merupakan penelitian skripsi pada program studi Sistem Informasi yang mengevaluasi performa model YOLOv8 Nano untuk mendeteksi berbagai item logistik pendaki pada tingkat kepadatan visual dan latar belakang yang bervariasi.",
+        features: [
+          "Persiapan dan anotasi dataset khusus menggunakan Roboflow",
+          "Pelatihan model YOLOv8 Nano untuk deteksi dan lokalisasi multi-objek",
+          "Evaluasi performa deteksi dan recall pada berbagai kondisi kepadatan",
+          "Analisis komparatif kuantitatif yang diterbitkan di jurnal akademik peer-review",
+        ],
+        description: `Proyek ini merupakan proyek visi komputer berbasis penelitian yang dikembangkan sebagai bagian dari skripsi saya di program studi Sistem Informasi. Penelitian ini mengevaluasi performa model YOLOv8 Nano untuk mendeteksi beberapa objek logistik pendaki berdasarkan kepadatan visual.
+
+Dataset dikumpulkan dan disiapkan secara mandiri menggunakan Roboflow, kemudian digunakan untuk melatih model YOLOv8 Nano untuk deteksi multi-objek.
+
+Penelitian ini mengevaluasi kemampuan deteksi model pada berbagai tingkat kepadatan objek visual, dengan fokus menentukan performa model ketika beberapa objek logistik muncul dalam satu gambar.
+
+Proyek ini menggabungkan persiapan data, pelatihan model, deteksi objek, dan evaluasi performa sebagai bagian dari proses penelitian skripsi.`,
+      },
+    },
   },
 ];

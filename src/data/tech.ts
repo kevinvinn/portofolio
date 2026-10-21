@@ -66,14 +66,6 @@ export const techCategories: TechCategory[] = [
         icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg",
       },
       {
-        name: "Vue",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg",
-      },
-      {
-        name: "Nuxt",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nuxtjs/nuxtjs-original.svg",
-      },
-      {
         name: "Tailwind CSS",
         icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
       },

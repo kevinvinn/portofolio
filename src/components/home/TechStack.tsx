@@ -3,8 +3,11 @@
 import React from "react";
 import { useReducedMotion } from "framer-motion";
 import { techCategories } from "@/data/tech";
+import { useLanguage } from "@/components/language-provider";
+import { fill } from "@/lib/i18n";
 
 export function TechStack() {
+  const { copy } = useLanguage();
   const prefersReducedMotion = useReducedMotion();
 
   return (
@@ -13,7 +16,7 @@ export function TechStack() {
         {/* Chapter Marker */}
         <div className="flex items-center gap-2 mb-4">
           <span className="text-xs font-mono font-semibold tracking-widest text-primary uppercase">
-            02 // TECH STACK
+            {copy.techStack.eyebrow}
           </span>
           <div className="h-[1px] w-12 bg-border" />
         </div>
@@ -21,14 +24,14 @@ export function TechStack() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-foreground tracking-tight">
-              Tools &amp; Technologies
+              {copy.techStack.title}
             </h2>
             <p className="text-muted-foreground text-base max-w-xl mt-3">
-              The languages, frameworks, databases, and workflow tools I use to design and build software.
+              {copy.techStack.intro}
             </p>
           </div>
           <span className="text-xs font-mono text-muted-foreground/80 hidden sm:inline-block">
-            HOVER OR FOCUS TO PAUSE
+            {copy.techStack.pauseHint}
           </span>
         </div>
       </div>
@@ -37,6 +40,10 @@ export function TechStack() {
       <div className="w-full space-y-12">
         {techCategories.map((category, catIdx) => {
           const isMoveLeft = catIdx % 2 === 0;
+          const categoryLabel =
+            copy.techStack.categories[
+              category.id as keyof typeof copy.techStack.categories
+            ] ?? category.label;
           // Repeat items sufficiently so the ribbon seamlessly loops on wide viewports
           const repeatCount = category.items.length <= 4 ? 6 : 4;
           const repeatedItems = Array.from({ length: repeatCount }, () => category.items).flat();
@@ -46,7 +53,7 @@ export function TechStack() {
               {/* Category Label */}
               <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-4">
                 <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground/90 font-semibold">
-                  {`0${catIdx + 1}. ${category.label}`}
+                  {`0${catIdx + 1}. ${categoryLabel}`}
                 </span>
               </div>
 
@@ -55,7 +62,9 @@ export function TechStack() {
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                   <ul
                     role="list"
-                    aria-label={`${category.label} technologies`}
+                    aria-label={fill(copy.techStack.technologiesAria, {
+                      category: categoryLabel,
+                    })}
                     className="flex flex-wrap items-center gap-8 py-3"
                   >
                     {category.items.map((item) => (
@@ -91,7 +100,9 @@ export function TechStack() {
                 /* Moving Marquee Track */
                 <div
                   tabIndex={0}
-                  aria-label={`${category.label} list. Press Tab or hover to pause motion.`}
+                  aria-label={fill(copy.techStack.pauseAria, {
+                    category: categoryLabel,
+                  })}
                   className="marquee-pause relative flex w-full max-w-[100vw] overflow-hidden py-3 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/40"
                 >
                   {/* Left and Right Gradient Fade Masks */}

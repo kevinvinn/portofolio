@@ -4,10 +4,12 @@ import React, { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { ContactModal } from "../layout/ContactModal";
+import { useLanguage } from "@/components/language-provider";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function Hero() {
+  const { copy } = useLanguage();
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [ready, setReady] = useState(false);
   const prefersReducedMotion = useReducedMotion();
@@ -121,7 +123,7 @@ export function Hero() {
           aria-hidden="true"
           className="pointer-events-none absolute right-2 top-1/2 hidden -translate-y-1/2 rotate-180 whitespace-nowrap text-[10px] uppercase tracking-[0.45em] text-hero-micro [writing-mode:vertical-rl] xl:block"
         >
-          Nganjuk / East Java
+          {copy.hero.location}
         </span>
 
         <div className="mx-auto flex w-full max-w-[1600px] flex-1 flex-col px-5 pb-16 pt-28 sm:px-8 md:px-10 md:pb-24 md:pt-32 lg:pt-36 xl:px-24">
@@ -139,19 +141,19 @@ export function Hero() {
               {...enter(0.18)}
               className="text-left lg:col-span-3 lg:justify-self-end lg:pr-12 lg:text-right xl:pr-16"
             >
-              <p className="text-[10px] uppercase tracking-[0.35em] text-hero-subtle">Role</p>
+              <p className="text-[10px] uppercase tracking-[0.35em] text-hero-subtle">{copy.hero.role}</p>
               <p className="mt-3 text-base font-semibold leading-snug text-hero-fg-strong sm:text-lg md:text-xl">
-                Fullstack Developer
+                {copy.hero.rolePrimary}
                 <br />
-                Backend Developer
+                {copy.hero.roleSecondary}
               </p>
 
               <div className="mt-6 h-px w-40 bg-hero-divider lg:ml-auto" />
 
-              <p className="mt-6 text-[10px] uppercase tracking-[0.35em] text-hero-subtle">Focus</p>
+              <p className="mt-6 text-[10px] uppercase tracking-[0.35em] text-hero-subtle">{copy.hero.focus}</p>
               <p className="mt-3 text-sm leading-relaxed text-hero-body sm:text-base">
-                Web Apps, REST APIs
-                <br className="hidden lg:block" /> &amp; Databases
+                {copy.hero.focusPrimary}
+                <br className="hidden lg:block" /> {copy.hero.focusSecondary}
               </p>
             </motion.div>
           </div>
@@ -162,8 +164,7 @@ export function Hero() {
             className="grid grid-cols-1 items-end gap-8 pb-2 lg:grid-cols-12 lg:gap-6"
           >
             <p className="max-w-md text-sm leading-relaxed text-hero-body sm:text-[15px] lg:col-span-5">
-              Fullstack and Backend Developer based in Nganjuk, Indonesia. I build reliable web
-              applications, clean REST APIs, and the data systems behind them.
+              {copy.hero.bio}
             </p>
 
             <div className="flex flex-wrap items-center gap-2.5 lg:col-span-7 lg:justify-end lg:pr-12 xl:pr-16">
@@ -172,7 +173,7 @@ export function Hero() {
                 onClick={() => setIsContactOpen(true)}
                 className="inline-flex items-center gap-2 rounded-full bg-hero-control px-5 py-2.5 text-xs font-semibold text-hero-control-fg transition-colors hover:bg-hero-control-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hero-ring focus-visible:ring-offset-2 focus-visible:ring-offset-hero-bg"
               >
-                Get in touch
+                {copy.hero.getInTouch}
                 <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
               </button>
 
@@ -213,7 +214,7 @@ export function Hero() {
             onClick={scrollIntoPage}
             className="absolute bottom-20 left-1/2 hidden -translate-x-1/2 cursor-pointer items-center gap-2 text-[10px] uppercase tracking-[0.32em] text-hero-subtle transition-colors hover:text-hero-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hero-ring focus-visible:ring-offset-2 focus-visible:ring-offset-hero-bg md:inline-flex"
           >
-            Scroll
+            {copy.hero.scroll}
             <ArrowDown className="h-3.5 w-3.5" aria-hidden="true" />
           </button>
         </div>

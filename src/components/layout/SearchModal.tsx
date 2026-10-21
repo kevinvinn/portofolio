@@ -5,28 +5,61 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Search, X, ArrowUpRight } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { projectsData } from "@/data/projects";
+import { projectsData, localizeProject, type LocalizedProject } from "@/data/projects";
 import { ProjectModal } from "./ProjectModal";
+import { useLanguage } from "@/components/language-provider";
+import { fill } from "@/lib/i18n";
 
 interface SearchModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const categories = ["All", "Web Development", "Mobile App", "UI/UX Design", "Machine Learning"];
+type CategoryKey = "all" | "web" | "mobile" | "uiux" | "ai";
 
-// Display labels stay stable while the archive uses more specific project categories/tags.
-const categoryAliases: Record<string, string[]> = {
-  "Web Development": ["web development", "web-based", "web app"],
-  "Mobile App": ["mobile development", "mobile app"],
-  "UI/UX Design": ["ui/ux", "ui design", "ux design", "user experience", "user interface"],
-  "Machine Learning": ["machine learning", "artificial intelligence", "computer vision", "yolov8"],
+const categories: CategoryKey[] = ["all", "web", "mobile", "uiux", "ai"];
+
+// Canonical category matching stays language-independent while the archive and
+// visible filter labels change with the selected language.
+const categoryAliases: Record<CategoryKey, string[]> = {
+  all: [],
+  web: ["web development", "web-based", "web app", "pengembangan web", "aplikasi web"],
+  mobile: [
+    "mobile development",
+    "mobile app",
+    "aplikasi mobile",
+    "pengembangan aplikasi mobile",
+  ],
+  uiux: [
+    "ui/ux",
+    "ui design",
+    "ux design",
+    "user experience",
+    "user interface",
+    "desain ui/ux",
+  ],
+  ai: [
+    "machine learning",
+    "artificial intelligence",
+    "computer vision",
+    "yolov8",
+    "kecerdasan buatan",
+    "visi komputer",
+    "deteksi objek",
+    "pembelajaran mesin",
+  ],
 };
 
+interface SearchableProject {
+  project: LocalizedProject;
+  searchString: string;
+}
+
 export function SearchModal({ isOpen, onClose }: SearchModalProps) {
+  const { language, copy } = useLanguage();
   const router = useRouter();
   const [query, setQuery] = useState("");
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [activeCategory, setActiveCategory] = useState<CategoryKey>("all");
   const modalRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const triggerRef = useRef<HTMLElement | null>(null);
@@ -113,27 +146,47 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
     setPrevIsOpen(isOpen);
     if (!isOpen) {
       setQuery("");
-      setActiveCategory("All");
+      setActiveCategory("all");
     }
   }
 
-  const filteredProjects = projectsData.filter((project) => {
-    const searchString = `${project.title} ${project.category} ${project.tags.join(" ")}`.toLowerCase();
-    const matchesCategory =
-      activeCategory === "All" ||
-      project.category === activeCategory ||
-      (categoryAliases[activeCategory]?.some((alias) => searchString.includes(alias)) ?? false);
-    const matchesQuery = query.length < 2 || searchString.includes(query.toLowerCase());
-    return matchesCategory && matchesQuery;
+  const searchableProjects: SearchableProject[] = projectsData.map((project) => {
+    const localizedProject = localizeProject(project, language);
+    const searchString = [
+      localizedProject.title,
+      localizedProject.category,
+      localizedProject.tags.join(" "),
+      project.title,
+      project.category,
+      project.tags.join(" "),
+    ]
+      .join(" ")
+      .toLowerCase();
+
+    return { project: localizedProject, searchString };
   });
 
-  const showResults = query.length >= 2 || activeCategory !== "All";
+  const filteredProjects = searchableProjects
+    .filter(({ searchString }) => {
+      const matchesCategory =
+        activeCategory === "all" ||
+        categoryAliases[activeCategory].some((alias) => searchString.includes(alias));
+      const matchesQuery = query.length < 2 || searchString.includes(query.toLowerCase());
+      return matchesCategory && matchesQuery;
+    })
+    .map(({ project }) => project);
+
+  const showResults = query.length >= 2 || activeCategory !== "all";
   const trimmedQuery = query.trim();
-  const resultLabel = `${filteredProjects.length} ${filteredProjects.length === 1 ? "project" : "projects"}`;
+  const resultLabel = `${filteredProjects.length} ${
+    filteredProjects.length === 1
+      ? copy.search.resultSingular
+      : copy.search.resultPlural
+  }`;
 
   const resetSearch = () => {
     setQuery("");
-    setActiveCategory("All");
+    setActiveCategory("all");
     inputRef.current?.focus();
   };
 
@@ -161,11 +214,10 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
             className="relative flex max-h-[calc(100dvh-2rem)] w-full max-w-3xl flex-col overflow-hidden rounded-[1.5rem] border border-border bg-surface shadow-2xl sm:max-h-[min(82vh,780px)] sm:rounded-[1.75rem]"
           >
             <h2 id="search-modal-title" className="sr-only">
-              Search projects
+              {copy.search.title}
             </h2>
             <p id="search-help" className="sr-only">
-              Search by project name, category, or technology. Type at least two characters. Press
-              Escape to close.
+              {copy.search.help}
             </p>
 
             {/* Search input */}
@@ -175,7 +227,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                 className="h-5 w-5 shrink-0 text-muted-foreground transition-colors group-focus-within:text-primary"
               />
               <label htmlFor="project-search" className="sr-only">
-                Search projects by name, category, or technology
+                {copy.search.inputLabel}
               </label>
               <input
                 ref={inputRef}
@@ -183,7 +235,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search projects or technologies"
+                placeholder={copy.search.placeholder}
                 aria-describedby="search-help"
                 className="min-w-0 flex-1 bg-transparent py-2 text-base text-foreground caret-primary outline-none placeholder:text-muted-foreground focus:outline-none focus-visible:outline-none sm:text-lg"
               />
@@ -194,7 +246,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                 <button
                   type="button"
                   onClick={onClose}
-                  aria-label="Close search"
+                  aria-label={copy.search.close}
                   className="inline-flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-surface-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
                 >
                   <X className="h-4.5 w-4.5" aria-hidden="true" />
@@ -206,7 +258,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
             <div className="border-b border-border px-4 py-3 sm:px-6">
               <div
                 role="group"
-                aria-label="Filter projects by category"
+                aria-label={copy.search.filterGroup}
                 className="flex flex-wrap gap-x-2 gap-y-2"
               >
                 {categories.map((cat) => (
@@ -221,14 +273,14 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                         : "border border-border bg-surface text-muted-foreground hover:border-foreground/25 hover:bg-surface-muted hover:text-foreground"
                     }`}
                   >
-                    {cat}
+                    {copy.search.categories[cat]}
                   </button>
                 ))}
               </div>
             </div>
 
             <p className="sr-only" role="status" aria-live="polite">
-              {showResults ? resultLabel : "Type at least two characters to search."}
+              {showResults ? resultLabel : copy.search.statusPrompt}
             </p>
 
             {/* Results */}
@@ -238,16 +290,16 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                   <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-border bg-surface-muted text-muted-foreground">
                     <Search className="h-5 w-5" aria-hidden="true" />
                   </div>
-                  <p className="text-sm font-semibold text-foreground">Search the project archive</p>
+                  <p className="text-sm font-semibold text-foreground">{copy.search.emptyTitle}</p>
                   <p className="mt-1.5 max-w-sm text-sm leading-relaxed text-muted-foreground">
-                    Type at least 2 characters to search by project, technology, or category.
+                    {copy.search.emptyBody}
                   </p>
                 </div>
               ) : filteredProjects.length > 0 ? (
                 <div>
                   <div className="flex items-center justify-between px-2 pb-2 sm:px-3">
                     <span className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-                      Projects
+                      {copy.search.results}
                     </span>
                     <span className="font-mono text-[10px] text-muted-foreground">{resultLabel}</span>
                   </div>
@@ -296,18 +348,18 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                   </div>
                   <p className="text-sm font-semibold text-foreground">
                     {trimmedQuery.length >= 2
-                      ? `No projects match “${trimmedQuery}”`
-                      : "No projects in this category yet"}
+                      ? fill(copy.search.noMatch, { query: trimmedQuery })
+                      : copy.search.noCategory}
                   </p>
                   <p className="mt-1.5 max-w-sm text-sm leading-relaxed text-muted-foreground">
-                    Try a different project name or technology, or reset the filters below.
+                    {copy.search.noResultsBody}
                   </p>
                   <button
                     type="button"
                     onClick={resetSearch}
                     className="mt-5 rounded-full border border-border bg-surface px-4 py-2 text-xs font-medium text-foreground transition-colors hover:border-foreground/25 hover:bg-surface-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
                   >
-                    Reset search
+                    {copy.search.reset}
                   </button>
                 </div>
               )}

@@ -4,8 +4,11 @@ import React, { useState } from "react";
 import { MapPin, Calendar, Clock, ChevronDown, ChevronUp, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { experienceData } from "@/data/experience";
+import { useLanguage } from "@/components/language-provider";
+import { fill } from "@/lib/i18n";
 
 export function WorkExperience() {
+  const { language, copy } = useLanguage();
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({
     manggala: true,
   });
@@ -23,7 +26,7 @@ export function WorkExperience() {
       {/* Chapter Marker */}
       <div className="flex items-center gap-2 mb-8">
         <span className="text-xs font-mono font-semibold tracking-widest text-primary uppercase">
-          03 // EXPERIENCE
+          {copy.experience.eyebrow}
         </span>
         <div className="h-[1px] w-12 bg-border" />
       </div>
@@ -33,10 +36,10 @@ export function WorkExperience() {
         <div className="w-full md:w-1/3 shrink-0">
           <div className="md:sticky top-28 space-y-4">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-foreground leading-tight tracking-tight">
-              Work &amp; Education Journey
+              {copy.experience.title}
             </h2>
             <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-              A chronological timeline of production engineering internships, formal education, and hands-on system building.
+              {copy.experience.intro}
             </p>
           </div>
         </div>
@@ -87,7 +90,7 @@ export function WorkExperience() {
                         —
                       </span>
                       <span className="text-foreground/90 font-semibold text-lg md:text-xl">
-                        {exp.role}
+                        {exp.role[language]}
                       </span>
                     </h3>
 
@@ -95,21 +98,21 @@ export function WorkExperience() {
                     <div className="flex items-center flex-wrap gap-2 text-sm text-muted-foreground font-medium mb-3">
                       <div className="flex items-center gap-1.5">
                         <MapPin className="w-4 h-4 text-muted-foreground/80" />
-                        <span>{exp.location}</span>
+                        <span>{exp.location[language]}</span>
                       </div>
 
                       <span className="text-border mx-1">|</span>
 
                       <div className="flex items-center gap-1.5">
                         <Calendar className="w-4 h-4 text-muted-foreground/80" />
-                        <span>{exp.period}</span>
+                        <span>{exp.period[language]}</span>
                       </div>
                     </div>
 
                     {/* Duration Badge */}
                     <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-surface-muted border border-border/60 rounded-full text-xs font-mono text-muted-foreground mb-4">
                       <Clock className="w-3.5 h-3.5" />
-                      <span>{exp.duration}</span>
+                      <span>{exp.duration[language]}</span>
                     </div>
 
                     {/* Accordion Toggle */}
@@ -128,11 +131,13 @@ export function WorkExperience() {
                         )}
 
                         <span>
-                          {isOpen ? "Hide key achievements" : "View key achievements"}
+                          {isOpen
+                            ? copy.experience.hideAchievements
+                            : copy.experience.viewAchievements}
                         </span>
 
                         <span className="text-xs font-mono text-muted-foreground/70">
-                          ({exp.highlights.length})
+                          ({exp.highlights[language].length})
                         </span>
                       </button>
                     </div>
@@ -143,7 +148,9 @@ export function WorkExperience() {
                         <motion.div
                           id={`exp-highlights-${exp.id}`}
                           role="region"
-                          aria-label={`Highlights for ${exp.company}`}
+                          aria-label={fill(copy.experience.highlightsFor, {
+                            company: exp.company,
+                          })}
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
@@ -155,7 +162,7 @@ export function WorkExperience() {
                         >
                           <div className="pt-4 pb-2">
                             <ul role="list" className="flex flex-col gap-2.5">
-                              {exp.highlights.map((highlight, hIdx) => (
+                              {exp.highlights[language].map((highlight, hIdx) => (
                                 <li
                                   key={hIdx}
                                   className="flex items-start gap-3 group/item"

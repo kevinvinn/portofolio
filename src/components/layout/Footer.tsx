@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
+import { useLanguage } from "@/components/language-provider";
+import { fill } from "@/lib/i18n";
 
 const EMAIL = "kevinrisky18@gmail.com";
 
@@ -29,6 +31,7 @@ const socials = [
 ];
 
 export function Footer() {
+  const { copy } = useLanguage();
   const [localTime, setLocalTime] = useState<string | null>(null);
 
   useEffect(() => {
@@ -55,17 +58,17 @@ export function Footer() {
     >
       <div className="mx-auto w-full max-w-[1600px] px-5 pb-10 pt-24 sm:px-8 md:px-10 md:pb-12 md:pt-32">
         <p className="max-w-4xl text-2xl font-medium leading-[1.25] tracking-[-0.02em] text-foreground/90 sm:text-3xl md:text-[2.35rem]">
-          Have a project in mind, or just want to say hello?
-          <br className="hidden sm:block" /> I&apos;d be glad to hear what you&apos;re building.
+          {copy.footer.promptFirst}
+          <br className="hidden sm:block" /> {copy.footer.promptSecond}
         </p>
 
         <a
           href={`mailto:${EMAIL}`}
-          aria-label={`Email Kevin Risky Abadi at ${EMAIL}`}
+          aria-label={fill(copy.footer.emailAria, { email: EMAIL })}
           className="group mt-12 inline-flex max-w-full items-start gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background md:mt-16 md:gap-5"
         >
           <span className="text-[clamp(3rem,14.5vw,11rem)] font-bold leading-[0.86] tracking-[-0.055em]">
-            Let&apos;s Talk
+            {copy.footer.letTalk}
           </span>
           <ArrowUpRight
             aria-hidden="true"
@@ -80,18 +83,18 @@ export function Footer() {
             <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground">
               ++ kevin.dev
             </p>
-            <p className="mt-3 text-muted-foreground">All rights reserved &copy; 2026</p>
+            <p className="mt-3 text-muted-foreground">{copy.footer.rights} &copy; 2026</p>
           </div>
 
           <div>
             <p className="text-foreground/85">Nganjuk, Indonesia</p>
-            <p className="mt-3 text-muted-foreground">Fullstack &amp; Backend Developer</p>
+            <p className="mt-3 text-muted-foreground">{copy.footer.role}</p>
           </div>
 
           <div>
-            <p className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">Local Time</p>
+            <p className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{copy.footer.localTime}</p>
             <p className="mt-3 font-mono text-foreground/80" aria-live="off">
-              {localTime ? `${localTime} WIB` : "WIB (GMT+7)"}
+              {localTime ? `${localTime} WIB` : copy.footer.timeFallback}
             </p>
           </div>
 

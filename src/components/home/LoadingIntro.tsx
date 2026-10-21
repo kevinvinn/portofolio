@@ -2,23 +2,24 @@
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { useLanguage } from "@/components/language-provider";
 
 interface GreetingItem {
   text: string;
-  lang: string;
 }
 
 const GREETINGS: GreetingItem[] = [
-  { text: "Selamat datang", lang: "Indonesian" },
-  { text: "Welcome", lang: "English" },
-  { text: "ようこそ", lang: "Japanese" },
-  { text: "欢迎", lang: "Chinese" },
-  { text: "Sugeng rawuh", lang: "Javanese" },
+  { text: "Selamat datang" },
+  { text: "Welcome" },
+  { text: "ようこそ" },
+  { text: "欢迎" },
+  { text: "Sugeng rawuh" },
 ];
 
 const INTRO_SEEN_KEY = "hasSeenIntro";
 
 export function LoadingIntro() {
+  const { copy } = useLanguage();
   const [active, setActive] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [progress, setProgress] = useState(0);
@@ -201,7 +202,7 @@ export function LoadingIntro() {
         <motion.aside
           role="dialog"
           aria-modal="true"
-          aria-label="Loading introduction"
+          aria-label={copy.loadingIntro.dialogLabel}
           initial={{ opacity: 1 }}
           exit={{
             opacity: 0,
@@ -219,10 +220,10 @@ export function LoadingIntro() {
               ref={skipButtonRef}
               type="button"
               onClick={handleComplete}
-              aria-label="Skip introduction"
+              aria-label={copy.loadingIntro.skipAria}
               className="text-xs font-mono uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded border border-border/60 hover:border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground cursor-pointer"
             >
-              Skip [Esc]
+              {copy.loadingIntro.skip}
             </button>
           </header>
 
@@ -270,7 +271,7 @@ export function LoadingIntro() {
             <div className="max-w-4xl mx-auto w-full space-y-2.5 sm:space-y-3">
               <div className="flex items-center justify-between text-xs font-mono tracking-wider">
                 <span className="text-muted-foreground uppercase">
-                  {GREETINGS[currentIndex].lang}
+                  {copy.loadingIntro.languages[currentIndex]}
                 </span>
                 <span className="text-foreground font-semibold tabular-nums">
                   {Math.round(progress)}%
