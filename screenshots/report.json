@@ -1,0 +1,116 @@
+{
+  "introGone": true,
+  "desktopOverflow": {
+    "viewport": 1440,
+    "scrollWidth": 1440,
+    "bodyScrollWidth": 1440
+  },
+  "hero": {
+    "height": 900,
+    "viewport": 900,
+    "name": "Kevin\nRisky Abadi"
+  },
+  "footerOverflow": {
+    "scrollWidth": 1440,
+    "viewport": 1440
+  },
+  "headerTop": {
+    "top": 0,
+    "transform": "none",
+    "textColor": "rgb(255, 255, 255)"
+  },
+  "headerDown": {
+    "top": -97,
+    "bottom": 0,
+    "ariaHidden": "true",
+    "inert": true
+  },
+  "headerUp": {
+    "top": 0,
+    "ariaHidden": null,
+    "inert": false
+  },
+  "menuDesktop": {
+    "exists": true,
+    "width": 893,
+    "height": 900,
+    "focus": "Close navigation menu",
+    "bodyOverflow": "hidden",
+    "linkCount": 7,
+    "viewport": 1440,
+    "panelScrollHeight": 900,
+    "panelClientHeight": 900,
+    "socialsVisible": true
+  },
+  "focusTrap": {
+    "inside": true,
+    "active": "Close navigation menu"
+  },
+  "escape": {
+    "menuGone": true,
+    "restoredFocus": "Open navigation menu",
+    "bodyOverflow": "hidden scroll"
+  },
+  "backdrop": {
+    "menuGone": true
+  },
+  "selection": {
+    "menuGone": true,
+    "url": "/#about",
+    "aboutTop": 0
+  },
+  "homeLink": {
+    "menuGone": true,
+    "url": "/",
+    "scrollY": 0
+  },
+  "searchFromMenu": {
+    "menuGone": true,
+    "searchOpen": true,
+    "focusInsideSearch": true,
+    "bodyOverflow": "hidden"
+  },
+  "ctrlK": true,
+  "mobileOverflow": {
+    "viewport": 390,
+    "scrollWidth": 390,
+    "bodyScrollWidth": 390
+  },
+  "mobileHero": {
+    "name": "Kevin\nRisky Abadi",
+    "width": 350,
+    "height": 98,
+    "viewportWidth": 390
+  },
+  "mobileFooterOverflow": {
+    "viewport": 390,
+    "scrollWidth": 390
+  },
+  "menuMobile": {
+    "width": 390,
+    "height": 844,
+    "viewportWidth": 390,
+    "scrollWidth": 390,
+    "overflowY": "auto"
+  },
+  "nestedHeader": {
+    "path": "/projects/jepretin",
+    "headerTop": 0,
+    "background": "oklab(0.999994 0.0000455678 0.0000200868 / 0.85)",
+    "textColor": "rgb(23, 23, 23)",
+    "contentTop": 0
+  },
+  "nestedToHome": {
+    "url": "/#projects",
+    "menuGone": true,
+    "projectsTop": 0,
+    "scrollY": 4019,
+    "projectsOffsetTop": 4019,
+    "documentHeight": 7434
+  },
+  "lightHeader": {
+    "background": "oklab(0.999994 0.0000455678 0.0000200868 / 0.85)",
+    "textColor": "rgb(23, 23, 23)"
+  },
+  "logs": []
+}

@@ -3,35 +3,180 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
+  /* Page & Core */
   --background: #ffffff;
   --foreground: #171717;
-  --hero-grid-color: #e6ebf5;
-  --hero-glow-color: rgba(37,99,235,0.10);
   
-  --muted: #f3f4f6;
-  --muted-foreground: #6b7280;
+  /* Surfaces */
+  --surface: #ffffff;
+  --surface-muted: #f4f4f5;
   
-  --border: #e5e7eb;
+  /* Muted Text & Elements (7.73:1 contrast against #ffffff) */
+  --muted: #f4f4f5;
+  --muted-foreground: #52525b;
+  
+  /* Borders */
+  --border: #e4e4e7;
+  --border-strong: #171717;
+  --border-dashed: #d4d4d8;
+  
+  /* Primary Accent: Cinematic Purple Family (#7163F1 reference, tuned for AA on white) */
+  --primary: #5949e6;
+  --primary-hover: #4a3dc4;
+  --primary-foreground: #ffffff;
+  
+  /* Secondary Accent: Sky Blue Family (Sky 700 tuned for >=4.5:1 AA contrast on white) */
+  --accent: #0369a1;
+  --accent-hover: #075985;
+  --accent-foreground: #ffffff;
+  
+  /* Accent Magenta: Neo-Brutalist Pop */
+  --accent-magenta: #b5179e;
+  
+  /* Focus Ring */
+  --ring: #5949e6;
+  --ring-offset: #ffffff;
+
+  /* Overlays */
+  --overlay: rgba(18, 15, 12, 0.46);
+  --overlay-strong: rgba(18, 15, 12, 0.58);
+
+  /* Hero: neutral silver fallback drawn from the light Hero image */
+  --hero-bg: #e9edf2;
+  --hero-fg: #191510;
+  --hero-fg-strong: #211a13;
+  --hero-body: #574f44;
+  --hero-subtle: #5f574b;
+  --hero-micro: #6b6255;
+  --hero-link: #443d33;
+  --hero-divider: rgba(25, 21, 16, 0.14);
+  --hero-border: rgba(25, 21, 16, 0.22);
+  --hero-border-strong: rgba(25, 21, 16, 0.52);
+  --hero-ghost-bg: rgba(25, 21, 16, 0.05);
+  --hero-ghost-hover: rgba(25, 21, 16, 0.09);
+  --hero-control: #191510;
+  --hero-control-fg: #faf6ef;
+  --hero-control-hover: #30281f;
+  --hero-ring: #5949e6;
+  --hero-ring-offset: #e9edf2;
+  
+  /* Neo-brutalist Offset Shadows */
+  --shadow-brutal-sm: 2px 2px 0px var(--border-strong);
+  --shadow-brutal: 4px 4px 0px var(--border-strong);
+  --shadow-brutal-md: 6px 6px 0px var(--border-strong);
+  --shadow-brutal-lg: 8px 8px 0px var(--border-strong);
+  
+  /* Atmosphere */
+  --hero-grid-color: rgba(25, 21, 16, 0.055);
+  --hero-glow-color: rgba(89, 73, 230, 0.10);
 }
 
 .dark {
+  /* Page & Core */
   --background: #0a0a0a;
   --foreground: #ededed;
-  --hero-grid-color: rgba(255,255,255,0.06);
-  --hero-glow-color: rgba(37,99,235,0.12);
   
+  /* Surfaces */
+  --surface: #141416;
+  --surface-muted: #1c1c1f;
+  
+  /* Muted Text & Elements (7.72:1 contrast against #0a0a0a) */
   --muted: #262626;
-  --muted-foreground: #a3a3a3;
+  --muted-foreground: #a1a1aa;
   
+  /* Borders */
   --border: #262626;
+  --border-strong: #ededed;
+  --border-dashed: #3f3f46;
+  
+  /* Primary Accent: Cinematic Purple Family (#7163F1 reference, tuned for AA on dark) */
+  --primary: #968bf9;
+  --primary-hover: #aba2fa;
+  --primary-foreground: #0a0a0a;
+  
+  /* Secondary Accent: Sky Blue Family */
+  --accent: #38bdf8;
+  --accent-hover: #7dd3fc;
+  --accent-foreground: #0a0a0a;
+  
+  /* Accent Magenta: Neo-Brutalist Pop */
+  --accent-magenta: #f384fc;
+  
+  /* Focus Ring */
+  --ring: #968bf9;
+  --ring-offset: #0a0a0a;
+
+  /* Overlays */
+  --overlay: rgba(0, 0, 0, 0.68);
+  --overlay-strong: rgba(0, 0, 0, 0.76);
+
+  /* Hero: preserve the approved cinematic night treatment */
+  --hero-bg: #060507;
+  --hero-fg: #ffffff;
+  --hero-fg-strong: rgba(255, 255, 255, 0.9);
+  --hero-body: rgba(255, 255, 255, 0.55);
+  --hero-subtle: rgba(255, 255, 255, 0.35);
+  --hero-micro: rgba(255, 255, 255, 0.25);
+  --hero-link: rgba(255, 255, 255, 0.8);
+  --hero-divider: rgba(255, 255, 255, 0.15);
+  --hero-border: rgba(255, 255, 255, 0.2);
+  --hero-border-strong: rgba(255, 255, 255, 0.5);
+  --hero-ghost-bg: rgba(255, 255, 255, 0.1);
+  --hero-ghost-hover: rgba(255, 255, 255, 0.15);
+  --hero-control: #ffffff;
+  --hero-control-fg: #000000;
+  --hero-control-hover: rgba(255, 255, 255, 0.85);
+  --hero-ring: rgba(255, 255, 255, 0.7);
+  --hero-ring-offset: #060507;
+  
+  /* Neo-brutalist Offset Shadows */
+  --shadow-brutal-sm: 2px 2px 0px var(--border-strong);
+  --shadow-brutal: 4px 4px 0px var(--border-strong);
+  --shadow-brutal-md: 6px 6px 0px var(--border-strong);
+  --shadow-brutal-lg: 8px 8px 0px var(--border-strong);
+  
+  /* Atmosphere */
+  --hero-grid-color: rgba(255, 255, 255, 0.06);
+  --hero-glow-color: rgba(150, 139, 249, 0.12);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-border-dashed: var(--border-dashed);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-magenta: var(--accent-magenta);
+  --color-ring: var(--ring);
+  --color-overlay: var(--overlay);
+  --color-overlay-strong: var(--overlay-strong);
+  --color-hero-bg: var(--hero-bg);
+  --color-hero-fg: var(--hero-fg);
+  --color-hero-fg-strong: var(--hero-fg-strong);
+  --color-hero-body: var(--hero-body);
+  --color-hero-subtle: var(--hero-subtle);
+  --color-hero-micro: var(--hero-micro);
+  --color-hero-link: var(--hero-link);
+  --color-hero-divider: var(--hero-divider);
+  --color-hero-border: var(--hero-border);
+  --color-hero-border-strong: var(--hero-border-strong);
+  --color-hero-ghost-bg: var(--hero-ghost-bg);
+  --color-hero-ghost-hover: var(--hero-ghost-hover);
+  --color-hero-control: var(--hero-control);
+  --color-hero-control-fg: var(--hero-control-fg);
+  --color-hero-control-hover: var(--hero-control-hover);
+  --color-hero-ring: var(--hero-ring);
+  --color-hero-ring-offset: var(--hero-ring-offset);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
   --font-signature: var(--font-signature);
@@ -106,3 +251,110 @@ body {
   pointer-events: none;
   z-index: -1;
 }
+
+/* Accessible Focus Ring Fallback. Kept in the base layer so component-level
+   focus treatments can replace the outline intentionally. */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+/* Restrained Neo-Brutalist & Editorial Styling Foundations */
+.border-brutal {
+  border: 2px solid var(--border-strong);
+}
+
+.border-dashed-editorial {
+  border: 1px dashed var(--border-dashed);
+}
+
+.shadow-brutal-sm {
+  box-shadow: var(--shadow-brutal-sm);
+}
+
+.shadow-brutal {
+  box-shadow: var(--shadow-brutal);
+}
+
+.shadow-brutal-md {
+  box-shadow: var(--shadow-brutal-md);
+}
+
+.shadow-brutal-lg {
+  box-shadow: var(--shadow-brutal-lg);
+}
+
+.shadow-brutal-accent {
+  box-shadow: 4px 4px 0px 0px var(--primary);
+}
+
+.shadow-brutal-magenta {
+  box-shadow: 4px 4px 0px 0px var(--accent-magenta);
+}
+
+/* Restrained hover lift for interactive cards and buttons */
+.hover-lift-brutal {
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-lift-brutal:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-brutal-md);
+}
+
+.hover-lift-brutal:active {
+  transform: translate(0px, 0px);
+  box-shadow: var(--shadow-brutal-sm);
+}
+
+/* Decorative offset border layers must never intercept clicks */
+.offset-border-layer {
+  pointer-events: none;
+}
+
+/* Moving Tech Stack Marquee */
+@keyframes marquee-left {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+.animate-marquee-left {
+  animation: marquee-left 32s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-right {
+  animation: marquee-right 32s linear infinite;
+  will-change: transform;
+}
+
+.marquee-pause:hover .animate-marquee-left,
+.marquee-pause:hover .animate-marquee-right,
+.marquee-pause:focus-within .animate-marquee-left,
+.marquee-pause:focus-within .animate-marquee-right {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-left,
+  .animate-marquee-right {
+    animation: none;
+    transform: none;
+  }
+}
+

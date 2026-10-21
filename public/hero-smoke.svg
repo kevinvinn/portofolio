@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="base" x1="0" y1="0" x2="0.85" y2="1">
+      <stop offset="0" stop-color="#121017" />
+      <stop offset="0.34" stop-color="#0a090e" />
+      <stop offset="0.58" stop-color="#111016" />
+      <stop offset="1" stop-color="#060508" />
+    </linearGradient>
+
+    <filter id="fog" x="-30%" y="-30%" width="160%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.0026 0.011" numOctaves="5" seed="29" result="noise" />
+      <feColorMatrix
+        in="noise"
+        type="matrix"
+        values="0 0 0 0 0.74
+                0 0 0 0 0.72
+                0 0 0 0 0.80
+                0 0 0 1.65 -0.76"
+        result="clouds"
+      />
+      <feGaussianBlur in="clouds" stdDeviation="13" />
+    </filter>
+
+    <filter id="streaks" x="-30%" y="-30%" width="160%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.0014 0.019" numOctaves="4" seed="57" result="noise" />
+      <feColorMatrix
+        in="noise"
+        type="matrix"
+        values="0 0 0 0 0.88
+                0 0 0 0 0.86
+                0 0 0 0 0.92
+                0 0 0 1.8 -0.9"
+        result="clouds"
+      />
+      <feGaussianBlur in="clouds" stdDeviation="7" />
+    </filter>
+
+    <radialGradient id="vignette" cx="0.48" cy="0.44" r="0.78">
+      <stop offset="0" stop-color="#060508" stop-opacity="0" />
+      <stop offset="0.62" stop-color="#060508" stop-opacity="0.22" />
+      <stop offset="1" stop-color="#050407" stop-opacity="0.9" />
+    </radialGradient>
+
+    <linearGradient id="edgeFade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.7" />
+      <stop offset="0.55" stop-color="#ffffff" stop-opacity="1" />
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.45" />
+    </linearGradient>
+    <mask id="fadeMask">
+      <rect width="1600" height="900" fill="url(#edgeFade)" />
+    </mask>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#base)" />
+
+  <g mask="url(#fadeMask)">
+    <g transform="rotate(-26 800 450) scale(1.45 1) translate(-230 -80)" opacity="0.9">
+      <rect width="1600" height="900" filter="url(#fog)" />
+    </g>
+    <g transform="rotate(-26 800 450) scale(1.15 1) translate(60 40)" opacity="0.5">
+      <rect width="1600" height="900" filter="url(#streaks)" />
+    </g>
+  </g>
+
+  <rect width="1600" height="900" fill="url(#vignette)" />
+</svg>

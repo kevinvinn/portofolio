@@ -1,256 +1,138 @@
 "use client";
 
-import React, { useState } from "react";
-import { ChevronDown } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-
-const stacks = [
-  {
-    id: "dev",
-    category: "Development",
-    items: [
-      {
-        name: "Nuxt",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nuxtjs/nuxtjs-original.svg",
-      },
-      {
-        name: "Next.js",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
-      },
-      {
-        name: "Vue",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg",
-      },
-      {
-        name: "React",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
-      },
-      {
-        name: "JavaScript",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
-      },
-      {
-        name: "Laravel",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg",
-      },
-      {
-        name: "PHP",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg",
-      },
-      {
-        name: "Tailwind",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
-      },
-      {
-        name: "GitHub",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg",
-      },
-      {
-        name: "Postman",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg",
-      },
-      {
-        name: "Supabase",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg",
-      },
-      {
-        name: "MySQL",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
-      },
-      {
-        name: "PostgreSQL",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg",
-      },
-    ],
-  },
-  {
-    id: "design",
-    category: "Design",
-    items: [
-      {
-        name: "Figma",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg",
-      },
-      {
-        name: "Photoshop",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/photoshop/photoshop-plain.svg",
-      },
-    ],
-  },
-];
+import React from "react";
+import { useReducedMotion } from "framer-motion";
+import { techCategories } from "@/data/tech";
 
 export function TechStack() {
-  const [openSections, setOpenSections] = useState<Record<string, boolean>>({
-    dev: true,
-    design: true,
-  });
-
-  const toggleSection = (id: string) => {
-    setOpenSections((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
+  const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section className="w-full max-w-6xl mx-auto px-4 py-20 sm:px-6 lg:px-8 border-t border-border/50">
-      {/* TITLE */}
-      <div className="text-center mb-16">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
-          My Stack
-        </h2>
+    <section id="tech-stack" className="w-full py-24 border-t border-border/60 overflow-hidden">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+        {/* Chapter Marker */}
+        <div className="flex items-center gap-2 mb-4">
+          <span className="text-xs font-mono font-semibold tracking-widest text-primary uppercase">
+            02 // TECH STACK
+          </span>
+          <div className="h-[1px] w-12 bg-border" />
+        </div>
 
-        <p className="text-muted-foreground text-base max-w-xl mx-auto">
-          My go-to arsenal — the technologies and tools I rely on to ship
-          fast, build smart, and deliver great products.
-        </p>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-foreground tracking-tight">
+              Tools &amp; Technologies
+            </h2>
+            <p className="text-muted-foreground text-base max-w-xl mt-3">
+              The languages, frameworks, databases, and workflow tools I use to design and build software.
+            </p>
+          </div>
+          <span className="text-xs font-mono text-muted-foreground/80 hidden sm:inline-block">
+            HOVER OR FOCUS TO PAUSE
+          </span>
+        </div>
       </div>
 
-      {/* STACK CONTAINER */}
-      <div
-        className="
-          w-full
-          grid
-          grid-cols-1
-          md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]
-          gap-6
-        "
-      >
-        {stacks.map((stack, index) => {
-          const isOpen = openSections[stack.id];
+      {/* 4 Category Rows */}
+      <div className="w-full space-y-12">
+        {techCategories.map((category, catIdx) => {
+          const isMoveLeft = catIdx % 2 === 0;
+          // Repeat items sufficiently so the ribbon seamlessly loops on wide viewports
+          const repeatCount = category.items.length <= 4 ? 6 : 4;
+          const repeatedItems = Array.from({ length: repeatCount }, () => category.items).flat();
 
           return (
-            <div key={stack.id} className="w-full min-w-0 max-w-none">
-              {/* CARD */}
-              <div
-                className="
-                  w-full
-                  min-w-0
-                  border
-                  border-gray-200
-                  dark:border-gray-800
-                  rounded-3xl
-                  bg-white
-                  dark:bg-[#111]
-                  overflow-hidden
-                "
-              >
-                {/* HEADER */}
-                <button
-                  type="button"
-                  onClick={() => toggleSection(stack.id)}
-                  className="
-                    w-full
-                    px-4 py-5
-                    sm:px-6 sm:py-6
-                    flex
-                    items-center
-                    justify-between
-                    focus:outline-none
-                  "
-                >
-                  <div className="flex items-center gap-4 min-w-0">
-                    {/* NUMBER */}
-                    <div
-                      className="
-                        w-10
-                        h-10
-                        min-w-10
-                        rounded-full
-                        bg-black
-                        dark:bg-white
-                        text-white
-                        dark:text-black
-                        flex
-                        items-center
-                        justify-center
-                        font-bold
-                        text-lg
-                      "
-                    >
-                      {index + 1}
-                    </div>
-
-                    {/* TITLE */}
-                    <h3 className="text-xl font-bold text-foreground">
-                      {stack.category}
-                    </h3>
-                  </div>
-
-                  {/* ARROW */}
-                  <motion.div
-                    animate={{
-                      rotate: isOpen ? 180 : 0,
-                    }}
-                    transition={{
-                      duration: 0.25,
-                      ease: "easeInOut",
-                    }}
-                    className="shrink-0"
-                  >
-                    <ChevronDown className="w-5 h-5 text-muted-foreground" />
-                  </motion.div>
-                </button>
-
-                {/* CONTENT */}
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      initial={{
-                        height: 0,
-                        opacity: 0,
-                      }}
-                      animate={{
-                        height: "auto",
-                        opacity: 1,
-                      }}
-                      exit={{
-                        height: 0,
-                        opacity: 0,
-                      }}
-                      transition={{
-                        duration: 0.3,
-                        ease: "easeInOut",
-                      }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-4 pb-6 sm:px-6 sm:pb-8 flex flex-wrap gap-3 sm:gap-4">
-                        {stack.items.map((item) => (
-                          <div
-                            key={item.name}
-                            title={item.name}
-                            className="
-                              w-9 h-9
-                              sm:w-[52px] sm:h-[52px]
-                              shrink-0
-                              rounded-full
-                              bg-[#f8f9fa]
-                              dark:bg-[#2a2a2a]
-                              flex
-                              items-center
-                              justify-center
-                              p-3
-                              hover:scale-110
-                              transition-transform
-                              cursor-pointer
-                            "
-                          >
-                            <img
-                              src={item.icon}
-                              alt={item.name}
-                              className="
-                                w-full
-                                h-full
-                                object-contain
-                              "
-                            />
-                          </div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+            <div key={category.id} className="w-full">
+              {/* Category Label */}
+              <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-4">
+                <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground/90 font-semibold">
+                  {`0${catIdx + 1}. ${category.label}`}
+                </span>
               </div>
+
+              {/* Reduced Motion Static Fallback */}
+              {prefersReducedMotion ? (
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <ul
+                    role="list"
+                    aria-label={`${category.label} technologies`}
+                    className="flex flex-wrap items-center gap-8 py-3"
+                  >
+                    {category.items.map((item) => (
+                      <li
+                        key={item.name}
+                        className="inline-flex items-center gap-3 py-1.5 focus:outline-none"
+                      >
+                        {item.icon ? (
+                          /* eslint-disable-next-line @next/next/no-img-element */
+                          <img
+                            src={item.icon}
+                            alt=""
+                            aria-hidden="true"
+                            className="w-6 h-6 sm:w-7 sm:h-7 object-contain"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <span
+                            aria-hidden="true"
+                            className="w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-red-600 text-white font-mono font-bold text-[10px] flex items-center justify-center shrink-0"
+                          >
+                            {item.fallbackText || "ODC"}
+                          </span>
+                        )}
+                        <span className="text-base sm:text-lg font-medium text-foreground">
+                          {item.name}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
+                /* Moving Marquee Track */
+                <div
+                  tabIndex={0}
+                  aria-label={`${category.label} list. Press Tab or hover to pause motion.`}
+                  className="marquee-pause relative flex w-full max-w-[100vw] overflow-hidden py-3 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/40"
+                >
+                  {/* Left and Right Gradient Fade Masks */}
+                  <div className="pointer-events-none absolute inset-y-0 left-0 w-20 sm:w-36 bg-gradient-to-r from-background to-transparent z-10" />
+                  <div className="pointer-events-none absolute inset-y-0 right-0 w-20 sm:w-36 bg-gradient-to-l from-background to-transparent z-10" />
+
+                  <div
+                    className={`flex whitespace-nowrap gap-12 sm:gap-16 items-center px-4 ${
+                      isMoveLeft ? "animate-marquee-left" : "animate-marquee-right"
+                    }`}
+                  >
+                    {repeatedItems.map((item, idx) => (
+                      <div
+                        key={`${category.id}-${item.name}-${idx}`}
+                        className="group/item inline-flex items-center gap-3 cursor-default select-none transition-transform duration-200 hover:scale-105"
+                      >
+                        {item.icon ? (
+                          /* eslint-disable-next-line @next/next/no-img-element */
+                          <img
+                            src={item.icon}
+                            alt=""
+                            aria-hidden="true"
+                            className="w-7 h-7 sm:w-8 sm:h-8 object-contain transition-transform group-hover/item:scale-110"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <span
+                            aria-hidden="true"
+                            className="w-7 h-7 sm:w-8 sm:h-8 rounded-md bg-red-600 text-white font-mono font-bold text-[11px] flex items-center justify-center shrink-0 shadow-sm"
+                          >
+                            {item.fallbackText || "ODC"}
+                          </span>
+                        )}
+                        <span className="text-lg sm:text-xl font-medium tracking-tight text-foreground/85 group-hover/item:text-foreground transition-colors">
+                          {item.name}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           );
         })}

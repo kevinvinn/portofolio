@@ -34,19 +34,24 @@ const publications = [
     author: "Rayhan Ferdiansyah, Kevin Risky Abadi, Erna Daniati",
     journal:
       "Prosiding SEMNAS INOTEK (Seminar Nasional Inovasi Teknologi), 9(1), 024-029",
-    link: "https://proceeding.unpkediri.ac.id/index.php/inotek/article/view/5239",
-    pdf: "#",
+    link: "https://doi.org/10.29407/kh6ctb25",
+    pdf: "https://proceeding.unpkediri.ac.id/index.php/inotek/article/view/7201/4849",
   },
 ];
 
+const availableYears = ["All", ...Array.from(new Set(publications.map((p) => p.year)))];
+
 export function Publications() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedYear, setSelectedYear] = useState("All");
 
-  const filteredPubs = publications.filter(
-    (pub) =>
+  const filteredPubs = publications.filter((pub) => {
+    const matchesYear = selectedYear === "All" || pub.year === selectedYear;
+    const matchesSearch =
       pub.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      pub.author.toLowerCase().includes(searchQuery.toLowerCase()),
-  );
+      pub.author.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesYear && matchesSearch;
+  });
 
   return (
     <section className="max-w-4xl mx-auto px-4 py-20 sm:px-6 lg:px-8 border-t border-border/50">
@@ -73,15 +78,20 @@ export function Publications() {
           />
         </div>
         <div className="flex flex-wrap gap-2">
-          <span className="px-4 py-1.5 rounded-full text-xs font-medium bg-foreground text-background">
-            All
-          </span>
-          <span className="px-4 py-1.5 rounded-full text-xs font-medium bg-muted text-muted-foreground hover:bg-border cursor-pointer">
-            2025
-          </span>
-          <span className="px-4 py-1.5 rounded-full text-xs font-medium bg-muted text-muted-foreground hover:bg-border cursor-pointer">
-            2024
-          </span>
+          {availableYears.map((year) => (
+            <button
+              key={year}
+              type="button"
+              onClick={() => setSelectedYear(year)}
+              className={`px-4 py-1.5 rounded-full text-xs font-medium transition-colors cursor-pointer ${
+                selectedYear === year
+                  ? "bg-foreground text-background"
+                  : "bg-muted text-muted-foreground hover:bg-border"
+              }`}
+            >
+              {year}
+            </button>
+          ))}
         </div>
       </div>
 
@@ -103,6 +113,8 @@ export function Publications() {
             <div className="flex-1">
               <a
                 href={pub.link}
+                target="_blank"
+                rel="noreferrer"
                 className="inline-flex items-start gap-2 group/link"
               >
                 <h3 className="text-lg font-bold text-foreground underline decoration-border group-hover/link:decoration-foreground transition-colors leading-tight">
@@ -122,6 +134,9 @@ export function Publications() {
             <div className="pt-2 md:pt-0 flex items-start justify-start md:justify-end">
               <a
                 href={pub.pdf}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Download PDF for ${pub.title}`}
                 className="bg-foreground text-background px-5 py-2 rounded-lg font-bold text-sm hover:scale-105 transition-transform"
               >
                 PDF

@@ -1,87 +1,183 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { Share2, ArrowUpRight } from "lucide-react";
-import { projectsData } from "@/data/projects";
+import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
+import Image from "next/image";
+import { Share2, ArrowUpRight, Check } from "lucide-react";
+import { projectsData, type Project } from "@/data/projects";
 import { ProjectModal } from "../layout/ProjectModal";
 
 export function SelectedWork() {
-  const [selectedProject, setSelectedProject] = useState<string | null>(null);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+  const prefersReducedMotion = useReducedMotion();
+
+  const handleShare = async (project: Project, e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    const shareUrl =
+      typeof window !== "undefined"
+        ? `${window.location.origin}/projects/${project.slug}`
+        : "";
+    const shareData = {
+      title: project.title,
+      text: `${project.title} - Portfolio Kevin Risky`,
+      url: shareUrl,
+    };
+
+    if (typeof navigator !== "undefined" && navigator.share) {
+      try {
+        await navigator.share(shareData);
+        return;
+      } catch {
+        // Fallback to clipboard if share was cancelled or failed
+      }
+    }
+
+    if (typeof navigator !== "undefined" && navigator.clipboard) {
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        setCopiedId(project.id);
+        setTimeout(() => setCopiedId(null), 2000);
+      } catch {
+        // Clipboard permission denied or unavailable
+      }
+    }
+  };
 
   return (
-    <section className="max-w-6xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
-      <div className="text-center mb-16">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">Selected Work</h2>
-        <p className="text-muted-foreground text-base max-w-2xl mx-auto">
-          Hand-picked projects that reflect my craft — built with precision, purpose, and a sharp eye for detail.
-        </p>
+    <section id="projects" className="max-w-6xl mx-auto px-4 py-24 sm:px-6 lg:px-8 border-t border-border/60">
+      {/* Chapter Marker */}
+      <div className="flex items-center gap-2 mb-8">
+        <span className="text-xs font-mono font-semibold tracking-widest text-primary uppercase">
+          04 // SELECTED PROJECTS
+        </span>
+        <div className="h-[1px] w-12 bg-border" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-14 lg:gap-x-12">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+        <div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-foreground tracking-tight">
+            Selected Work
+          </h2>
+          <p className="text-muted-foreground text-base max-w-2xl mt-3">
+            A selection of projects reflecting backend architectures, responsive applications, and computer vision research.
+          </p>
+        </div>
+      </div>
+
+      {/* 2-Column Neo-Brutalist Project Cards Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
         {projectsData.map((project, idx) => (
-          <motion.div
+          <motion.article
             key={project.id}
-            initial={{ opacity: 0, y: 30 }}
+            initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.5, delay: idx * 0.1 }}
-            className="group cursor-pointer flex flex-col"
-            onClick={() => setSelectedProject(project.id)}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{
+              duration: prefersReducedMotion ? 0 : 0.5,
+              delay: prefersReducedMotion ? 0 : idx * 0.1,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="group rounded-3xl bg-surface border-2 border-border-strong p-6 sm:p-8 shadow-brutal hover:shadow-brutal-lg hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between"
           >
-            {/* Image Container - clean, no overlay */}
-            <div className="relative aspect-[16/10] md:aspect-[4/3] rounded-[2rem] overflow-hidden bg-muted mb-6">
-              <img 
-                src={project.image} 
-                alt={project.title} 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute top-6 left-6 bg-white dark:bg-black text-black dark:text-white px-4 py-2 rounded-full text-xs font-bold tracking-wider uppercase shadow-sm">
-                {project.category}
+            <div>
+              {/* Image Container - Primary Visual Focus */}
+              <Link
+                href={`/projects/${project.slug}`}
+                className="relative aspect-[16/10] rounded-2xl overflow-hidden border-2 border-border-strong bg-surface-muted mb-6 block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring group/img"
+                aria-label={`View case study for ${project.title}`}
+              >
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover transition-transform duration-700 ease-out group-hover/img:scale-105"
+                />
+                {/* Category Pill */}
+                <div className="absolute top-4 left-4 bg-background border-2 border-border-strong text-foreground px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider shadow-sm">
+                  {project.category}
+                </div>
+              </Link>
+
+              {/* Title & Actions Row */}
+              <div className="flex items-start justify-between gap-4 mb-4">
+                <h3 className="text-xl sm:text-2xl font-bold text-foreground leading-snug flex-1 min-w-0">
+                  <Link
+                    href={`/projects/${project.slug}`}
+                    className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md"
+                  >
+                    {project.title}
+                  </Link>
+                </h3>
+
+                <div className="flex items-center gap-2.5 flex-shrink-0 pt-0.5">
+                  {/* Share / Copy Button */}
+                  <button
+                    type="button"
+                    onClick={(e) => handleShare(project, e)}
+                    aria-label={
+                      copiedId === project.id
+                        ? "Link copied to clipboard"
+                        : `Share link for ${project.title}`
+                    }
+                    title={
+                      copiedId === project.id
+                        ? "Link copied!"
+                        : "Share project"
+                    }
+                    className="w-10 h-10 rounded-full border-2 border-border-strong bg-surface hover:bg-foreground hover:text-background flex items-center justify-center text-foreground transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer"
+                  >
+                    {copiedId === project.id ? (
+                      <Check className="w-4 h-4 text-emerald-500" />
+                    ) : (
+                      <Share2 className="w-4 h-4" />
+                    )}
+                  </button>
+
+                  {/* Dedicated Case Study Link */}
+                  <Link
+                    href={`/projects/${project.slug}`}
+                    aria-label={`Read case study for ${project.title}`}
+                    title="View case study"
+                    className="w-10 h-10 rounded-full border-2 border-border-strong bg-foreground text-background hover:bg-primary hover:border-primary hover:text-primary-foreground flex items-center justify-center transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer"
+                  >
+                    <ArrowUpRight className="w-4 h-4" />
+                  </Link>
+                </div>
               </div>
+
+              {/* Summary */}
+              {project.summary && (
+                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-6 line-clamp-3">
+                  {project.summary}
+                </p>
+              )}
             </div>
 
-            {/* Title Row: Title on left, action buttons on right */}
-            <div className="flex items-start justify-between gap-4 mb-4">
-              <h3 className="text-xl sm:text-2xl md:text-[26px] font-semibold text-foreground leading-tight flex-1 min-w-0">
-                {project.title}
-              </h3>
-              <div className="flex items-center gap-3 flex-shrink-0 pt-1">
-                <button 
-                  onClick={(e) => { e.stopPropagation(); }}
-                  className="w-11 h-11 rounded-full bg-[#111] dark:bg-white flex items-center justify-center text-white dark:text-black hover:scale-105 transition-transform"
-                >
-                  <Share2 className="w-5 h-5" />
-                </button>
-                <button 
-                  onClick={(e) => { e.stopPropagation(); setSelectedProject(project.id); }}
-                  className="w-11 h-11 rounded-full bg-[#111] dark:bg-white flex items-center justify-center text-white dark:text-black hover:scale-105 transition-transform"
-                >
-                  <ArrowUpRight className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
-
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2.5">
-              {project.tags.map((tag) => (
-                <span 
-                  key={tag} 
-                  className="px-4 py-1.5 text-[13px] font-medium border border-border text-foreground rounded-full"
+            {/* Tags Ribbon */}
+            <div className="flex flex-wrap gap-2 pt-4 border-t border-border">
+              {project.tags.slice(0, 6).map((tag) => (
+                <span
+                  key={tag}
+                  className="px-3 py-1 text-xs font-mono font-medium rounded-lg border border-border bg-surface-muted text-foreground/80"
                 >
                   {tag}
                 </span>
               ))}
+              {project.tags.length > 6 && (
+                <span className="px-2.5 py-1 text-xs font-mono text-muted-foreground/70">
+                  +{project.tags.length - 6}
+                </span>
+              )}
             </div>
-          </motion.div>
+          </motion.article>
         ))}
       </div>
 
-      <ProjectModal 
-        isOpen={!!selectedProject} 
-        onClose={() => setSelectedProject(null)} 
-        projectId={selectedProject} 
-      />
+      {/* Retained ProjectModal for backward compatibility during transition */}
+      <ProjectModal isOpen={false} onClose={() => {}} projectId={null} />
     </section>
   );
 }

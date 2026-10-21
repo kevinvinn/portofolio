@@ -1,19 +1,23 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useSyncExternalStore } from "react";
 import { Moon, Sun, ArrowUp } from "lucide-react";
 import { useTheme } from "next-themes";
 import { AnimatePresence, motion } from "framer-motion";
 import { flushSync } from "react-dom";
 
+const emptySubscribe = () => () => {};
+
 export function FloatingActions() {
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const { resolvedTheme, setTheme } = useTheme();
+  const mounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
   const [showBackToTop, setShowBackToTop] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-    
     const handleScroll = () => {
       if (window.scrollY > 300) {
         setShowBackToTop(true);
@@ -27,7 +31,7 @@ export function FloatingActions() {
   }, []);
 
   const toggleTheme = (e: React.MouseEvent) => {
-    const isDark = theme === "dark";
+    const isDark = resolvedTheme === "dark";
     const newTheme = isDark ? "light" : "dark";
 
     if (!document.startViewTransition) {
@@ -93,9 +97,9 @@ export function FloatingActions() {
       <button
         onClick={toggleTheme}
         className="w-12 h-12 rounded-full bg-background border border-border shadow-lg flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors group"
-        aria-label="Toggle Theme"
+        aria-label={resolvedTheme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
       >
-        {theme === "dark" ? (
+        {resolvedTheme === "dark" ? (
           <Sun className="w-5 h-5 group-hover:rotate-45 transition-transform duration-300" />
         ) : (
           <Moon className="w-5 h-5 group-hover:-rotate-12 transition-transform duration-300" />

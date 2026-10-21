@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { LinkedInModal } from "../layout/LinkedInModal";
 import { linkedinPostsData } from "@/data/linkedin";
@@ -37,10 +38,12 @@ export function LinkedIn() {
             {/* Header */}
             <div className="flex items-start justify-between mb-3">
               <div className="flex gap-2.5">
-                <div className="w-10 h-10 rounded-full overflow-hidden bg-muted flex-shrink-0">
-                  <img 
+                <div className="w-10 h-10 rounded-full overflow-hidden bg-muted flex-shrink-0 relative">
+                  <Image 
                     src="/pp.jfif" 
                     alt="Kevin Risky Abadi" 
+                    width={40}
+                    height={40}
                     className="w-full h-full object-cover"
                   />
                 </div>

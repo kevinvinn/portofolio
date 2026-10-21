@@ -1,5 +1,6 @@
 export interface Project {
   id: string;
+  slug: string;
   title: string;
   category: string;
   image: string;
@@ -7,11 +8,19 @@ export interface Project {
   date: string;
   description: string;
   gallery: string[];
+  link?: string;
+  summary?: string;
+  role?: string;
+  overview?: string;
+  features?: string[];
+  githubUrl?: string;
+  demoUrl?: string;
 }
 
 export const projectsData: Project[] = [
   {
     id: "1",
+    slug: "jepretin",
     title: "JEPRETIN - A Location-Based Photography and Videography Marketplace Platform",
     category: "Web Development",
     date: "September 2025",
@@ -19,6 +28,17 @@ export const projectsData: Project[] = [
     tags: [
       "Node.js", "Express.js", "PostgreSQL", "Prisma", 
       "REST API", "JWT", "Midtrans", "Swagger", "Jest", "Backend Development"
+    ],
+    summary: "A location-based marketplace platform connecting customers with photography and videography service providers.",
+    role: "Backend Developer",
+    overview: "JEPRETIN is a location-based marketplace platform designed to connect customers with photography and videography service providers. The platform helps users discover providers, explore their portfolios and service packages, place orders, and manage transactions through an integrated system.",
+    features: [
+      "User authentication and role-based access control with JWT",
+      "Provider profile, service package, and portfolio management",
+      "Order workflow management from booking to completion",
+      "Midtrans payment gateway integration with webhook handling",
+      "Integrated wallet, withdrawal, review, and notification services",
+      "REST API documentation with Swagger and unit testing with Jest"
     ],
     description: `JEPRETIN is a location-based marketplace platform designed to connect customers with photography and videography service providers. The platform helps users discover providers, explore their portfolios and service packages, place orders, and manage transactions through an integrated system.
 
@@ -40,6 +60,7 @@ The application also includes comprehensive REST API documentation using Swagger
   },
   {
     id: "2",
+    slug: "sky-ticket",
     title: "Sky Ticket - A Web-Based Flight Ticket Booking Platform",
     category: "Web Development",
     date: "December 2024",
@@ -47,6 +68,17 @@ The application also includes comprehensive REST API documentation using Swagger
     tags: [
       "Node.js", "Express.js", "PostgreSQL", "Prisma", 
       "REST API", "JWT", "Google OAuth", "Redis", "AWS", "GitHub Actions", "Jest"
+    ],
+    summary: "A web-based flight ticket booking platform developed as the final project of the MSIB Batch 7 program at Binar Academy.",
+    role: "Backend Developer",
+    overview: "Sky Ticket is a web-based flight ticket booking platform that provides a system for users to search and book flights, manage passenger information, select seats, and process flight ticket bookings through an integrated backend system.",
+    features: [
+      "Flight search, passenger information, and seat selection system",
+      "Authentication with JWT, password hashing, email OTP, and Google OAuth",
+      "Relational database design with PostgreSQL and Prisma",
+      "Redis caching and automated token expiration with node-cron",
+      "REST API documentation with Swagger and testing with Jest",
+      "CI/CD automated deployment to AWS using GitHub Actions"
     ],
     description: `Sky Ticket is a web-based flight ticket booking platform developed as the final project of the MSIB Batch 7 Studi Independen program. The project was developed collaboratively by a team of 8 members consisting of 4 frontend developers and 4 backend developers.
 
@@ -73,6 +105,7 @@ The project was developed collaboratively using Git and GitHub through branching
   },
   {
     id: "3",
+    slug: "bweather",
     title: "BWeather - A Mobile Weather Detection Application",
     category: "Mobile Development",
     date: "2024",
@@ -80,6 +113,14 @@ The project was developed collaboratively using Git and GitHub through branching
     tags: [
       "Mobile Development", "Project Management", 
       "System Development", "Teamwork", "Problem Solving"
+    ],
+    summary: "A mobile weather detection application developed for Pekan Inovasi Fakultas Teknik.",
+    role: "Project Manager",
+    overview: "BWeather is a mobile weather detection application developed as a collaborative team project for the Pekan Inovasi Fakultas Teknik, delivering accessible weather forecasting and real-time environmental metrics.",
+    features: [
+      "Mobile weather monitoring interface and weather data visualization",
+      "Full development lifecycle from project planning to stakeholder presentation",
+      "Cross-functional team coordination, problem solving, and decision making"
     ],
     description: `BWeather is a mobile weather detection application developed as a team project for the Pekan Inovasi Fakultas Teknik. The project was developed collaboratively to provide weather-related information through a mobile application.
 
@@ -96,6 +137,7 @@ The project provided experience in team coordination, project management, commun
   },
   {
     id: "4",
+    slug: "yolov8-logistics",
     title: "Multi-Object Detection for Hiker Logistics (YOLOv8 Nano)",
     category: "Artificial Intelligence / Computer Vision",
     date: "2026",
@@ -104,6 +146,16 @@ The project provided experience in team coordination, project management, commun
       "YOLOv8", "Computer Vision", "Object Detection", 
       "Roboflow", "Machine Learning", "Research"
     ],
+    summary: "Undergraduate thesis research evaluating the detection performance of YOLOv8 Nano on hiker logistics under visual clutter.",
+    role: "Undergraduate Researcher",
+    overview: "This project is an undergraduate research study in Information Systems evaluating the performance of the YOLOv8 Nano model for detecting multiple hiking logistics items across varying levels of visual density and background clutter.",
+    features: [
+      "Custom dataset preparation and annotation using Roboflow",
+      "YOLOv8 Nano model training for multi-object detection and localization",
+      "Evaluation of detection performance and recall under varying clutter conditions",
+      "Quantitative comparative analysis published in an academic peer-reviewed journal"
+    ],
+    link: "https://doi.org/10.47065/bit.v7i2.2786",
     description: `This project is a research-based computer vision project developed as part of my undergraduate thesis in Information Systems. The research evaluates the performance of the YOLOv8 Nano model for detecting multiple hiking logistics objects based on visual density.
 
 The dataset was independently collected and prepared using Roboflow, then used to train the YOLOv8 Nano model for multi-object detection.

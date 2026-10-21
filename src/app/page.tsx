@@ -1,26 +1,22 @@
+import { LoadingIntro } from "@/components/home/LoadingIntro";
 import { Hero } from "@/components/home/Hero";
-import { Marquee } from "@/components/home/Marquee";
-import { SelectedWork } from "@/components/home/SelectedWork";
-import { LinkedIn } from "@/components/home/LinkedIn";
+import { About } from "@/components/home/About";
 import { TechStack } from "@/components/home/TechStack";
 import { WorkExperience } from "@/components/home/WorkExperience";
-import { Exploration } from "@/components/home/Exploration";
+import { SelectedWork } from "@/components/home/SelectedWork";
 import { Certifications } from "@/components/home/Certifications";
-import { Publications } from "@/components/home/Publications";
 import { Footer } from "@/components/layout/Footer";
 
 export default function Home() {
   return (
     <div className="flex flex-col">
+      <LoadingIntro />
       <Hero />
-      {/* <Marquee /> */}
-      <SelectedWork />
-      <LinkedIn />
+      <About />
       <TechStack />
       <WorkExperience />
-      <Exploration />
+      <SelectedWork />
       <Certifications />
-      <Publications />
       <Footer />
     </div>
   );

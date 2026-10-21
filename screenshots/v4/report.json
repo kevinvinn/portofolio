@@ -1,0 +1,506 @@
+{
+  "generatedAt": "2026-10-21T08:09:52.786Z",
+  "base": "http://localhost:3100",
+  "desktop": {
+    "width": 1440,
+    "height": 900
+  },
+  "mobile": {
+    "width": 390,
+    "height": 844
+  },
+  "referenceScreenshots": {
+    "available": false,
+    "note": "The supplied reference screenshots 1-6 were not present in the workspace or conversation. Validation used the written requirements and the existing V3 captures."
+  },
+  "screenshots": [
+    "03-hero-light.png",
+    "11-header-full-light.png",
+    "02b-search-empty-light.png",
+    "01-search-light.png",
+    "02-search-dark.png",
+    "05-menu-light.png",
+    "06-menu-dark.png",
+    "04-hero-dark.png",
+    "11b-header-full-dark.png",
+    "08-certifications-dark.png",
+    "07b-cert-modal-dark.png",
+    "07c-cert-modal-light.png",
+    "07-certifications-light.png",
+    "09-footer-light.png",
+    "10-footer-dark.png",
+    "12-header-minimal-light.png",
+    "12b-header-minimal-dark.png",
+    "13-header-project-light.png",
+    "13b-header-project-dark.png",
+    "13c-project-menu-dark.png",
+    "03b-hero-mobile-light.png",
+    "05b-menu-mobile-light.png",
+    "02c-search-mobile-light.png",
+    "02d-search-mobile-dark.png",
+    "05c-menu-mobile-dark.png",
+    "contact-modal-light.png",
+    "contact-modal-dark.png"
+  ],
+  "tests": {
+    "themeAtHomeTop": "light",
+    "heroLight": {
+      "background": "rgb(243, 238, 229)",
+      "color": "rgb(25, 21, 16)",
+      "height": 900,
+      "viewportHeight": 900,
+      "name": "Kevin\nRisky Abadi",
+      "overflow": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "bodyWidth": 1440
+      }
+    },
+    "headerTopLight": {
+      "transform": "none",
+      "translate": "0px",
+      "position": "fixed",
+      "scrollY": 0,
+      "color": "rgb(25, 21, 16)",
+      "rectTop": 0,
+      "text": "KEVIN.DEV • FULLSTACK DEVELOPER •KRAPortfolio 2026Nganjuk, Indonesia",
+      "metaInDom": true,
+      "metaOpacity": "1",
+      "metaAriaHidden": null,
+      "scrimOpacity": "0",
+      "scrimBackground": "linear-gradient(oklab(0.999994 0.0000455677 0.0000200868 / 0.8) 0%, oklab(0.999994 0.0000455678 0.0000200868 / 0.4) 50%, rgba(0, 0, 0, 0) 100%)",
+      "ariaHidden": null,
+      "inert": false
+    },
+    "searchEmptyLight": {
+      "activeFilter": "All",
+      "resultCount": 0,
+      "focusInside": true,
+      "background": "rgb(255, 255, 255)",
+      "bodyOverflow": "hidden"
+    },
+    "searchMinimumQuery": {
+      "query": "a",
+      "resultCount": 0,
+      "initialHintVisible": true
+    },
+    "searchCategories": {
+      "mobileApp": {
+        "active": "Mobile App",
+        "count": 1,
+        "results": [
+          "BWeather - A Mobile Weather Detection ApplicationMobile Development•Mobile Development, Project Management, System Development, Teamwork, Problem Solving"
+        ]
+      },
+      "machineLearning": {
+        "active": "Machine Learning",
+        "count": 1,
+        "results": [
+          "Multi-Object Detection for Hiker Logistics (YOLOv8 Nano)Artificial Intelligence / Computer Vision•YOLOv8, Computer Vision, Object Detection, Roboflow, Machine Learning, Research"
+        ]
+      },
+      "uiuxDesign": {
+        "active": "UI/UX Design",
+        "count": 0,
+        "emptyState": true
+      },
+      "webDevelopment": {
+        "active": "Web Development",
+        "count": 2
+      }
+    },
+    "searchResultsLight": {
+      "query": "web",
+      "resultCount": 2,
+      "activeFilter": "All",
+      "background": "rgb(255, 255, 255)"
+    },
+    "searchOverlayThemeSwitch": {
+      "themeAfter": "dark",
+      "stillOpen": true,
+      "backgroundAfter": "rgb(20, 20, 22)",
+      "colorAfter": "rgb(237, 237, 237)",
+      "resultCountAfter": 2,
+      "focusInsideAfter": true
+    },
+    "searchClosedAfterEscape": {
+      "open": false,
+      "bodyOverflow": "",
+      "activeElement": "BODY"
+    },
+    "searchResultsDark": {
+      "query": "web",
+      "resultCount": 2,
+      "background": "rgb(20, 20, 22)",
+      "color": "rgb(237, 237, 237)",
+      "focusInside": true
+    },
+    "menuOverlayThemeSwitch": {
+      "themeAfter": "dark",
+      "open": true,
+      "background": "rgb(20, 20, 22)",
+      "color": "rgb(237, 237, 237)"
+    },
+    "menuClosedFocus": {
+      "open": false,
+      "active": "Open navigation menu",
+      "bodyOverflow": ""
+    },
+    "menuLight": {
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(23, 23, 23)",
+      "focus": "Close navigation menu",
+      "bodyOverflow": "hidden",
+      "linkCount": 7,
+      "width": 893
+    },
+    "menuDark": {
+      "background": "rgb(20, 20, 22)",
+      "color": "rgb(237, 237, 237)",
+      "focus": "Close navigation menu",
+      "bodyOverflow": "hidden"
+    },
+    "heroDark": {
+      "background": "rgb(6, 5, 7)",
+      "color": "rgb(255, 255, 255)",
+      "name": "Kevin\nRisky Abadi",
+      "overflow": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "bodyWidth": 1440
+      }
+    },
+    "headerTopDark": {
+      "transform": "none",
+      "translate": "0px",
+      "position": "fixed",
+      "scrollY": 0,
+      "color": "rgb(255, 255, 255)",
+      "rectTop": 0,
+      "text": "KEVIN.DEV • FULLSTACK DEVELOPER •KRAPortfolio 2026Nganjuk, Indonesia",
+      "metaInDom": true,
+      "metaOpacity": "1",
+      "metaAriaHidden": null,
+      "scrimOpacity": "0",
+      "scrimBackground": "linear-gradient(oklab(0.144787 0.00000661612 0.00000289828 / 0.8) 0%, oklab(0.144787 0.00000661612 0.00000289828 / 0.4) 50%, rgba(0, 0, 0, 0) 100%)",
+      "ariaHidden": null,
+      "inert": false
+    },
+    "certifications": {
+      "light": {
+        "background": "rgb(244, 244, 245)",
+        "color": "rgb(23, 23, 23)",
+        "rowBackground": "rgba(0, 0, 0, 0)",
+        "sectionOverflow": {
+          "viewport": 1440,
+          "document": 1440
+        }
+      },
+      "dark": {
+        "background": "rgb(10, 10, 10)",
+        "color": "rgb(237, 237, 237)",
+        "rowBackground": "rgba(0, 0, 0, 0)"
+      }
+    },
+    "certificationModalThemeSwitch": {
+      "themeAfter": "light",
+      "dark": {
+        "open": true,
+        "background": "rgb(10, 10, 10)",
+        "color": "rgb(237, 237, 237)"
+      },
+      "afterTheme": {
+        "open": true,
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(23, 23, 23)"
+      },
+      "stillOpenAfterThemeSwitch": true
+    },
+    "footer": {
+      "light": {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(23, 23, 23)",
+        "overflow": {
+          "viewport": 1440,
+          "document": 1440
+        }
+      },
+      "dark": {
+        "background": "rgb(10, 10, 10)",
+        "color": "rgb(237, 237, 237)",
+        "overflow": {
+          "viewport": 1440,
+          "document": 1440
+        }
+      }
+    },
+    "headerMinimal": {
+      "light": {
+        "afterDown": {
+          "transform": "none",
+          "translate": "0px -100%",
+          "position": "fixed",
+          "scrollY": 2600,
+          "color": "rgb(23, 23, 23)",
+          "rectTop": -96,
+          "text": "KEVIN.DEV • FULLSTACK DEVELOPER •KRAPortfolio 2026Nganjuk, Indonesia",
+          "metaInDom": true,
+          "metaOpacity": "0",
+          "metaAriaHidden": "true",
+          "scrimOpacity": "0.994333",
+          "scrimBackground": "linear-gradient(oklab(0.999994 0.0000455677 0.0000200868 / 0.8) 0%, oklab(0.999994 0.0000455678 0.0000200868 / 0.4) 50%, rgba(0, 0, 0, 0) 100%)",
+          "ariaHidden": "true",
+          "inert": true
+        },
+        "afterUp": {
+          "transform": "none",
+          "translate": "0px",
+          "position": "fixed",
+          "scrollY": 2200,
+          "color": "rgb(23, 23, 23)",
+          "rectTop": 0,
+          "text": "KEVIN.DEV • FULLSTACK DEVELOPER •KRAPortfolio 2026Nganjuk, Indonesia",
+          "metaInDom": true,
+          "metaOpacity": "0",
+          "metaAriaHidden": "true",
+          "scrimOpacity": "1",
+          "scrimBackground": "linear-gradient(oklab(0.999994 0.0000455677 0.0000200868 / 0.8) 0%, oklab(0.999994 0.0000455678 0.0000200868 / 0.4) 50%, rgba(0, 0, 0, 0) 100%)",
+          "ariaHidden": null,
+          "inert": false
+        }
+      },
+      "dark": {
+        "afterDown": {
+          "transform": "none",
+          "translate": "0px -100%",
+          "position": "fixed",
+          "scrollY": 2600,
+          "color": "rgb(237, 237, 237)",
+          "rectTop": -96,
+          "text": "KEVIN.DEV • FULLSTACK DEVELOPER •KRAPortfolio 2026Nganjuk, Indonesia",
+          "metaInDom": true,
+          "metaOpacity": "0",
+          "metaAriaHidden": "true",
+          "scrimOpacity": "0.994355",
+          "scrimBackground": "linear-gradient(oklab(0.144787 0.00000661612 0.00000289828 / 0.8) 0%, oklab(0.144787 0.00000661612 0.00000289828 / 0.4) 50%, rgba(0, 0, 0, 0) 100%)",
+          "ariaHidden": "true",
+          "inert": true
+        },
+        "afterUp": {
+          "transform": "none",
+          "translate": "0px",
+          "position": "fixed",
+          "scrollY": 2200,
+          "color": "rgb(237, 237, 237)",
+          "rectTop": 0,
+          "text": "KEVIN.DEV • FULLSTACK DEVELOPER •KRAPortfolio 2026Nganjuk, Indonesia",
+          "metaInDom": true,
+          "metaOpacity": "0",
+          "metaAriaHidden": "true",
+          "scrimOpacity": "1",
+          "scrimBackground": "linear-gradient(oklab(0.144787 0.00000661612 0.00000289828 / 0.8) 0%, oklab(0.144787 0.00000661612 0.00000289828 / 0.4) 50%, rgba(0, 0, 0, 0) 100%)",
+          "ariaHidden": null,
+          "inert": false
+        }
+      }
+    },
+    "headerAtTopAfterScroll": {
+      "transform": "none",
+      "translate": "0px",
+      "position": "fixed",
+      "scrollY": 0,
+      "color": "rgb(255, 255, 255)",
+      "rectTop": 0,
+      "text": "KEVIN.DEV • FULLSTACK DEVELOPER •KRAPortfolio 2026Nganjuk, Indonesia",
+      "metaInDom": true,
+      "metaOpacity": "1",
+      "metaAriaHidden": null,
+      "scrimOpacity": "0",
+      "scrimBackground": "linear-gradient(oklab(0.144787 0.00000661612 0.00000289828 / 0.8) 0%, oklab(0.144787 0.00000661612 0.00000289828 / 0.4) 50%, rgba(0, 0, 0, 0) 100%)",
+      "ariaHidden": null,
+      "inert": false
+    },
+    "projectRouteLight": {
+      "path": "/projects/jepretin",
+      "header": {
+        "transform": "none",
+        "translate": "0px",
+        "position": "fixed",
+        "scrollY": 0,
+        "color": "rgb(23, 23, 23)",
+        "rectTop": 0,
+        "text": "KEVIN.DEV • FULLSTACK DEVELOPER •KRA",
+        "metaInDom": false,
+        "metaOpacity": null,
+        "metaAriaHidden": null,
+        "scrimOpacity": "1",
+        "scrimBackground": "linear-gradient(oklab(0.999994 0.0000455677 0.0000200868 / 0.8) 0%, oklab(0.999994 0.0000455678 0.0000200868 / 0.4) 50%, rgba(0, 0, 0, 0) 100%)",
+        "ariaHidden": null,
+        "inert": false
+      },
+      "overflow": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "bodyWidth": 1440
+      },
+      "title": "JEPRETIN - A Location-Based Photography and Videography Marketplace Platform"
+    },
+    "projectRouteDark": {
+      "theme": "dark",
+      "header": {
+        "transform": "none",
+        "translate": "0px",
+        "position": "fixed",
+        "scrollY": 0,
+        "color": "rgb(237, 237, 237)",
+        "rectTop": 0,
+        "text": "KEVIN.DEV • FULLSTACK DEVELOPER •KRA",
+        "metaInDom": false,
+        "metaOpacity": null,
+        "metaAriaHidden": null,
+        "scrimOpacity": "1",
+        "scrimBackground": "linear-gradient(oklab(0.144787 0.00000661612 0.00000289828 / 0.8) 0%, oklab(0.144787 0.00000661612 0.00000289828 / 0.4) 50%, rgba(0, 0, 0, 0) 100%)",
+        "ariaHidden": null,
+        "inert": false
+      }
+    },
+    "projectMenuDark": {
+      "theme": "dark",
+      "path": "/projects/jepretin",
+      "menuOpen": true,
+      "panelBackground": "rgb(20, 20, 22)",
+      "headerMetaInDom": false,
+      "overflow": {
+        "viewport": 1440,
+        "document": 1440
+      }
+    },
+    "searchFromMenuFocusRestore": {
+      "open": {
+        "focusInside": true,
+        "bodyOverflow": "hidden",
+        "resultCount": 0
+      },
+      "closed": {
+        "open": false,
+        "activeElement": "Open navigation menu",
+        "bodyOverflow": ""
+      }
+    },
+    "searchSelectProject": {
+      "clicked": true,
+      "selectedResultCount": 1,
+      "path": "/projects/bweather"
+    },
+    "menuNavigation": {
+      "clicked": true,
+      "url": "http://localhost:3100/#about",
+      "menuOpen": false,
+      "scrollY": 900
+    },
+    "themePersistence": {
+      "stored": "dark",
+      "applied": "dark"
+    },
+    "mobileHeroLight": {
+      "viewport": 390,
+      "documentWidth": 390,
+      "bodyWidth": 390,
+      "name": "Kevin\nRisky Abadi"
+    },
+    "mobileMenuLight": {
+      "viewport": 390,
+      "documentWidth": 390,
+      "panelWidth": 390,
+      "panelScrollHeight": 844,
+      "panelClientHeight": 844,
+      "bodyOverflow": "hidden"
+    },
+    "mobileSearchLight": {
+      "viewport": 390,
+      "documentWidth": 390,
+      "dialogWidth": 366,
+      "dialogHeight": 471,
+      "viewportHeight": 844,
+      "inputValue": "",
+      "placeholder": "Search projects or technologies",
+      "filterButtons": [
+        {
+          "text": "All",
+          "width": 39
+        },
+        {
+          "text": "Web Development",
+          "width": 131
+        },
+        {
+          "text": "Mobile App",
+          "width": 91
+        },
+        {
+          "text": "UI/UX Design",
+          "width": 103
+        },
+        {
+          "text": "Machine Learning",
+          "width": 129
+        }
+      ],
+      "focusInside": true
+    },
+    "mobileSearchDark": {
+      "viewport": 390,
+      "documentWidth": 390,
+      "dialogWidth": 366,
+      "dialogHeight": 447,
+      "background": "rgb(20, 20, 22)",
+      "color": "rgb(237, 237, 237)",
+      "resultCount": 2
+    },
+    "mobileMenuDark": {
+      "viewport": 390,
+      "documentWidth": 390,
+      "panelWidth": 390,
+      "background": "rgb(20, 20, 22)",
+      "color": "rgb(237, 237, 237)"
+    },
+    "mobileOverflow": {
+      "viewport": 390,
+      "documentWidth": 390,
+      "bodyWidth": 390
+    },
+    "contactModalThemeSwitch": {
+      "light": {
+        "open": true,
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(23, 23, 23)"
+      },
+      "dark": {
+        "open": true,
+        "background": "rgb(10, 10, 10)",
+        "color": "rgb(237, 237, 237)"
+      },
+      "themeAfter": "dark",
+      "stillOpenAfterThemeSwitch": true
+    },
+    "finalTheme": "dark",
+    "finalOverflow": {
+      "viewport": 1440,
+      "documentWidth": 1440,
+      "bodyWidth": 1440
+    }
+  },
+  "consoleIssues": [],
+  "validation": {
+    "typescript": "npx tsc --noEmit passed",
+    "eslint": "npx eslint src passed",
+    "build": "npm run build passed; 7 static routes generated",
+    "browser": "Final production run completed with no console errors and no horizontal overflow at 1440 px or 390 px"
+  },
+  "notes": {
+    "searchCategories": "Mobile App maps to the existing Mobile Development category, Machine Learning maps to the existing AI/CV tags, and UI/UX Design intentionally shows an empty state rather than fabricated results.",
+    "focusRestoration": "Search opened from the nav menu returns focus to the header menu trigger when the search closes, because the menu and its Search control are no longer open.",
+    "headerMetadata": "Home metadata fades out and becomes aria-hidden after the initial top state. Project routes do not render it. The metadata remains mounted during the fade, so textContent can still include it while it is visually and accessibly hidden.",
+    "contentPolicy": "No availability claim was added because the verified content does not support one. The header uses only the portfolio year and location."
+  }
+}

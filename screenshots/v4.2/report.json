@@ -1,0 +1,292 @@
+{
+  "testedAt": "2026-10-21T09:01:39.657Z",
+  "baseUrl": "http://localhost:3100",
+  "filesChanged": [
+    "src/components/home/Hero.tsx",
+    "src/components/home/Certifications.tsx",
+    "src/app/globals.css"
+  ],
+  "validation": {
+    "typescript": "PASS: npx tsc --noEmit produced no output.",
+    "eslint": "PASS: npx eslint src produced no output.",
+    "build": "PASS: npm run build compiled 7 static routes."
+  },
+  "tests": [
+    {
+      "name": "Desktop light Hero uses the exact local hero-light.png as a cover background",
+      "status": "PASS",
+      "details": {
+        "visibleBackground": {
+          "image": "url(\"http://localhost:3100/images/hero/hero-light.png\")",
+          "display": "block",
+          "size": "cover",
+          "position": "50% 50%",
+          "repeat": "no-repeat"
+        },
+        "heading": "KevinRiskyAbadi",
+        "controls": [
+          "Get in touch",
+          "GitHub",
+          "LinkedIn",
+          "Instagram",
+          "Scroll"
+        ]
+      }
+    },
+    {
+      "name": "Desktop theme toggle switches the visible background to hero-dark.png",
+      "status": "PASS",
+      "details": {
+        "visibleBackground": {
+          "image": "url(\"http://localhost:3100/images/hero/hero-dark.png\")",
+          "display": "block",
+          "size": "cover"
+        },
+        "resources": [
+          "http://localhost:3100/images/hero/hero-light.png",
+          "http://localhost:3100/images/hero/hero-dark.png"
+        ],
+        "toggleAvailable": "Switch to light theme"
+      }
+    },
+    {
+      "name": "Exact Hero image paths serve successfully",
+      "status": "PASS",
+      "details": [
+        {
+          "url": "/images/hero/hero-dark.png",
+          "status": 200,
+          "type": "image/png",
+          "length": "1726992"
+        },
+        {
+          "url": "/images/hero/hero-light.png",
+          "status": 200,
+          "type": "image/png",
+          "length": "1702658"
+        }
+      ]
+    },
+    {
+      "name": "Desktop light Certifications uses the page background and no ambient glow",
+      "status": "PASS",
+      "details": {
+        "certBackground": "rgb(255, 255, 255)",
+        "bodyBackground": "rgb(255, 255, 255)",
+        "projectsBackground": "rgba(0, 0, 0, 0)",
+        "headingColor": "rgb(23, 23, 23)",
+        "dividerColor": "rgb(228, 228, 231)",
+        "glowCount": 0,
+        "certCount": 3
+      }
+    },
+    {
+      "name": "Light certificate hover preview and modal still work",
+      "status": "PASS",
+      "details": {
+        "preview": {
+          "width": 288,
+          "height": 216,
+          "image": "/_next/image?url=%2Fdocs%2Fsertif%201.png&w=3840&q=75",
+          "opacity": "1"
+        },
+        "modalOpen": true,
+        "modalClosed": true
+      }
+    },
+    {
+      "name": "Desktop dark Certifications matches the page and modal works",
+      "status": "PASS",
+      "details": {
+        "certBackground": "rgb(10, 10, 10)",
+        "bodyBackground": "rgb(10, 10, 10)",
+        "headingColor": "rgb(237, 237, 237)",
+        "glowCount": 0
+      }
+    },
+    {
+      "name": "Hero SCROLL cue performs a smooth downward scroll without an About hash",
+      "status": "PASS",
+      "details": {
+        "before": {
+          "buttonFound": true,
+          "buttonDisplay": "flex",
+          "scrollY": 0,
+          "hash": "",
+          "heroHeight": 900,
+          "viewportHeight": 900,
+          "aboutTop": 900
+        },
+        "expectedDistance": 495,
+        "immediate": 0,
+        "mid": 380,
+        "after": {
+          "scrollY": 495,
+          "hash": "",
+          "url": "http://localhost:3100/",
+          "aboutTop": 405
+        }
+      }
+    },
+    {
+      "name": "Reduced motion makes the same SCROLL action immediate",
+      "status": "PASS",
+      "details": {
+        "expected": 495,
+        "immediate": 495,
+        "after": {
+          "scrollY": 495,
+          "hash": ""
+        }
+      }
+    },
+    {
+      "name": "Sidebar About navigation still uses /#about and scrolls to About",
+      "status": "PASS",
+      "details": {
+        "hash": "#about",
+        "scrollY": 900,
+        "menuOpen": false,
+        "aboutTop": 0
+      }
+    },
+    {
+      "name": "No horizontal overflow or layout clipping at desktop widths",
+      "status": "PASS",
+      "details": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "bodyScrollWidth": 1440,
+        "heroWidth": 1440
+      }
+    },
+    {
+      "name": "Mobile light and dark Hero use the correct local images and stay readable",
+      "status": "PASS",
+      "details": {
+        "light": {
+          "theme": "light",
+          "boxes": [
+            {
+              "image": "url(\"http://localhost:3100/images/hero/hero-light.png\")",
+              "display": "block",
+              "size": "cover",
+              "position": "50% 50%"
+            },
+            {
+              "image": "url(\"http://localhost:3100/images/hero/hero-dark.png\")",
+              "display": "none",
+              "size": "cover",
+              "position": "50% 50%"
+            }
+          ],
+          "overflow": {
+            "innerWidth": 390,
+            "scrollWidth": 390,
+            "bodyScrollWidth": 390
+          },
+          "headingRect": {
+            "left": 20,
+            "right": 370,
+            "width": 350
+          }
+        },
+        "dark": {
+          "theme": "dark",
+          "boxes": [
+            {
+              "image": "url(\"http://localhost:3100/images/hero/hero-light.png\")",
+              "display": "none"
+            },
+            {
+              "image": "url(\"http://localhost:3100/images/hero/hero-dark.png\")",
+              "display": "block"
+            }
+          ],
+          "overflow": {
+            "innerWidth": 390,
+            "scrollWidth": 390,
+            "bodyScrollWidth": 390
+          }
+        }
+      }
+    },
+    {
+      "name": "Mobile Certifications blends into the page in both themes",
+      "status": "PASS",
+      "details": {
+        "light": {
+          "certBackground": "rgb(255, 255, 255)",
+          "bodyBackground": "rgb(255, 255, 255)",
+          "overflow": true
+        },
+        "dark": {
+          "certBackground": "rgb(10, 10, 10)",
+          "bodyBackground": "rgb(10, 10, 10)",
+          "overflow": true
+        }
+      }
+    },
+    {
+      "name": "Mobile-width SCROLL handler calculates from the actual viewport and leaves the hash unchanged",
+      "status": "PASS",
+      "details": {
+        "before": {
+          "buttonFound": true,
+          "buttonDisplay": "none",
+          "heroHeight": 844,
+          "viewportHeight": 844,
+          "scrollY": 0,
+          "hash": ""
+        },
+        "expected": 464,
+        "after": {
+          "scrollY": 464,
+          "hash": "",
+          "url": "http://localhost:3100/"
+        }
+      }
+    },
+    {
+      "name": "Normal browser session has no runtime exceptions or console errors",
+      "status": "PASS",
+      "details": {
+        "runtimeIssues": [],
+        "allRecorded": []
+      }
+    }
+  ],
+  "screenshots": [
+    "01-desktop-light-hero.png",
+    "02-desktop-dark-hero.png",
+    "03-desktop-light-certifications.png",
+    "04-desktop-light-certifications-transition.png",
+    "05-desktop-light-certificate-modal.png",
+    "06-desktop-dark-certifications.png",
+    "07-desktop-dark-certifications-transition.png",
+    "08-desktop-dark-certificate-modal.png",
+    "09-desktop-scroll-after-click.png",
+    "10-mobile-light-hero.png",
+    "11-mobile-dark-hero.png",
+    "12-mobile-light-certifications.png",
+    "13-mobile-dark-certifications.png"
+  ],
+  "consoleIssues": [],
+  "limitations": [
+    "The SCROLL cue keeps its approved desktop-only visibility and remains hidden below the md breakpoint. Its handler was still exercised at 390px and produced the expected 464px scroll.",
+    "Pre-existing and outside this refinement: a cold load with prefers-reduced-motion active can emit React hydration error #418 from the existing Framer Motion useReducedMotion hooks in several components. The SCROLL handler now reads the media query at click time and passes reduced-motion validation.",
+    "The old public/hero-smoke.svg is no longer referenced by the Hero but was left on disk rather than deleting an untracked user asset."
+  ],
+  "summary": {
+    "passed": 14,
+    "failed": 0,
+    "runtimeConsoleErrors": 0,
+    "preExistingFavicon404": 0
+  },
+  "notes": [
+    "The approved mobile composition keeps the SCROLL cue hidden below md; its handler was still exercised at 390px to verify the viewport-based calculation.",
+    "Screenshots were captured from the production build at http://localhost:3100 using Chrome CDP.",
+    "The dark Hero image was checked after using the visible theme toggle, not only by setting localStorage.",
+    "Reduced motion was emulated after hydration so the click-time media query could be tested independently of the pre-existing first-render hydration mismatch."
+  ]
+}

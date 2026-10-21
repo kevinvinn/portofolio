@@ -13,10 +13,28 @@ import { FloatingActions } from "@/components/layout/FloatingActions";
 import { ScrollRestorer } from "@/components/layout/ScrollRestorer";
 
 export const metadata: Metadata = {
-  title: "Kevin R Portofolio",
-  description: "Fullstack Developer crafting clean interfaces and scalable systems — where thoughtful design meets solid engineering.",
+  metadataBase: new URL("https://kevin.dev"),
+  title: "Kevin Risky - Portfolio",
+  description:
+    "Fullstack Developer crafting clean interfaces and scalable systems, where thoughtful design meets solid engineering.",
+  openGraph: {
+    title: "Kevin Risky - Portfolio",
+    description:
+      "Fullstack Developer crafting clean interfaces and scalable systems, where thoughtful design meets solid engineering.",
+    url: "https://kevin.dev",
+    siteName: "Kevin Risky - Portfolio",
+    images: [
+      {
+        url: "/header.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
   icons: {
-    icon: '/icon.png', // Menggunakan icon.png untuk title/tab browser
+    icon: "/icon.png", // Menggunakan icon.png untuk title/tab browser
   },
 };
 
@@ -27,19 +45,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${caveat.variable} font-sans antialiased bg-background text-foreground custom-scrollbar`} suppressHydrationWarning>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+      <body
+        className={`${inter.variable} ${caveat.variable} font-sans antialiased bg-background text-foreground custom-scrollbar`}
+        suppressHydrationWarning
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <ScrollRestorer />
-          {/* Background Elements */}
-          <div className="hero-bg-grid" />
-          <div className="hero-bg-glow" />
-          
+
           <Navbar />
-          
-          <main className="min-h-screen pt-16">
-            {children}
-          </main>
-          
+
+          <main className="min-h-screen">{children}</main>
+
           <FloatingActions />
         </ThemeProvider>
       </body>
